@@ -1,7 +1,6 @@
 ---
 layout: page
-title: Hello World!
-tagline: Supporting tagline
+title: Jin-Wook Chung's blog
 ---
 {% include JB/setup %}
 
