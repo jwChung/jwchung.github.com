@@ -54,6 +54,12 @@ and the algorithm can be changed using the `Fixure.IdGenerators.Set` method.
 		}
 {% endhighlight %}
 
+
+{% highlight python %}
+    def yourfunction():
+         print "Hello World!"
+{% endhighlight %}
+
 #### Character ####
 An anonymous object for the character type is determined from a integer value -
 0 to 'a', 1 to 'b', 2 'c', '25' to 'z' and '26' to 'a' etc.
