@@ -16,7 +16,7 @@ Each numeric type has own `IIdGenerator`
 and the default algorithm for `IIdGenerator` is to return an random integer from inclusive 0 to exclusive 100
 and the algorithm can be changed using the `Fixure.IdGenerators.Set` method.
 
-{% highlight c# %}
+```c#
 namespace ConsoleApplication9
 {
     internal class Program
@@ -71,7 +71,7 @@ namespace ConsoleApplication9
         }
     }
 }
-{% endhighlight %}
+```
 
 [Built-in types]: http://msdn.microsoft.com/en-us/library/ya5y69ds(v=vs.80).aspx
 [Moq]: http://code.google.com/p/moq/
