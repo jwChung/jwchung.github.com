@@ -16,10 +16,78 @@ Each numeric type has own `IIdGenerator`
 and the default algorithm for `IIdGenerator` is to return an random integer from inclusive 0 to exclusive 100
 and the algorithm can be changed using the `Fixure.IdGenerators.Set` method.
 
-{% highlight ruby linenos=table %}
-def foo
-  puts 'foo'
-end
+{% highlight c# %}
+namespace ConsoleApplication9
+{
+    internal class Program
+    {
+        private static void Main(string[] args)
+        {
+            Action action = () => { };
+
+            int iterationCount = 10000000;
+
+            using (new TestStopwatch())
+            {
+                for (int i = 0; i < iterationCount; i++)
+                {
+                    action();
+                }
+            }
+
+            using (new TestStopwatch())
+            {
+                for (int i = 0; i < iterationCount; i++)
+                {
+                    action.Invoke();
+                }
+            }
+
+            using (new TestStopwatch())
+            {
+                for (int i = 0; i < iterationCount; i++)
+                {
+                    action.DynamicInvoke();
+                }
+            }
+
+            using (new TestStopwatch())
+            {
+                for (int i = 0; i < iterationCount; i++)
+                {
+                    action.Method.Invoke(action.Target, null);
+                }
+            }
+
+            using (new TestStopwatch())
+            {
+                var delegateInvokeMethod = action.GetType().GetMethod("Invoke");
+
+                for (int i = 0; i < iterationCount; i++)
+                {
+                    delegateInvokeMethod.Invoke(action, null);
+                }
+            }
+        }
+    }
+
+    internal class TestStopwatch : IDisposable
+    {
+        private readonly Stopwatch _stopwatch;
+
+        public TestStopwatch()
+        {
+            _stopwatch = new Stopwatch();
+            _stopwatch.Start();
+        }
+
+        public void Dispose()
+        {
+            _stopwatch.Stop();
+            Console.WriteLine(_stopwatch.ElapsedMilliseconds);
+        }
+    }
+}
 {% endhighlight %}
 
 [Built-in types]: http://msdn.microsoft.com/en-us/library/ya5y69ds(v=vs.80).aspx
