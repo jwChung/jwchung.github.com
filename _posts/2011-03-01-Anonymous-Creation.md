@@ -27,6 +27,7 @@ and the algorithm can be changed using the `Fixure.IdGenerators.Set` method.
 *   short
 *   ushort
 
+{% highlight C# %}
 		public void CreatingAnonymousOfNumericTypes()
 		{
 		    var fixture = new Fixture();
@@ -51,7 +52,7 @@ and the algorithm can be changed using the `Fixure.IdGenerators.Set` method.
 		    Assert.Equal(2d, fixture.Create<double>());
 		    Assert.Equal(0d, fixture.Create<double>());
 		}
-
+{% endhighlight %}
 
 #### Character ####
 An anonymous object for the character type is determined from a integer value -
