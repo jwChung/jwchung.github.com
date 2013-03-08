@@ -16,7 +16,7 @@ Each numeric type has own `IIdGenerator`
 and the default algorithm for `IIdGenerator` is to return an random integer from inclusive 0 to exclusive 100
 and the algorithm can be changed using the `Fixure.IdGenerators.Set` method.
 
-{% highlight ruby %}
+{% highlight ruby linenos=table %}
 def foo
   puts 'foo'
 end
