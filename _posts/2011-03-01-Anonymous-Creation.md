@@ -34,40 +34,6 @@ namespace ConsoleApplication9
                     action();
                 }
             }
-
-            using (new TestStopwatch())
-            {
-                for (int i = 0; i < iterationCount; i++)
-                {
-                    action.Invoke();
-                }
-            }
-
-            using (new TestStopwatch())
-            {
-                for (int i = 0; i < iterationCount; i++)
-                {
-                    action.DynamicInvoke();
-                }
-            }
-
-            using (new TestStopwatch())
-            {
-                for (int i = 0; i < iterationCount; i++)
-                {
-                    action.Method.Invoke(action.Target, null);
-                }
-            }
-
-            using (new TestStopwatch())
-            {
-                var delegateInvokeMethod = action.GetType().GetMethod("Invoke");
-
-                for (int i = 0; i < iterationCount; i++)
-                {
-                    delegateInvokeMethod.Invoke(action, null);
-                }
-            }
         }
     }
 }
