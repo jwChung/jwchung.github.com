@@ -5,12 +5,13 @@ title: Jin-Wook Chung's blog
 {% include JB/setup %}
 
 {% for post in paginator.posts %}
-<h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
-<div class="date">{{post.date | date_to_long_string }}</div>
-<div>
-{{ post.content | truncate: 600 }}
-</div>
-<hr>
+
+   <h2><a href="{{ post.url }}">{{ post.title }}</a></h2>
+   <div class="date">{{post.date | date_to_long_string }}</div>
+   <div>
+    {{ post.content }}
+   </div>
+   <hr>
 {% endfor %}
 
 <!-- Pagination links -->
