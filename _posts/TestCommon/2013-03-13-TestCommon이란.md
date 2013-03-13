@@ -4,6 +4,7 @@ title: TestCommon이란?
 tags : [TestCommon]
 published: true
 ccl: ko
+date : 2013-03-12 15:00:00 UTC
 ---
 {% include JB/setup %}
 
