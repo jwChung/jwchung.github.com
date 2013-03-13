@@ -11,7 +11,7 @@ I am Jin-Wook Chung, and *jwChung blog* is my blog to write about programming, s
 ### <a id="Contact me"></a>Contact me
 Do you have any question for me? Don't hesitate and contact me by the following ways.
 
-* **Comment**: You can leave a comment on a certain post on my blog to ask the question.
+* **Comment**: You can leave a comment on a certain post of my blog to ask the question.
 * **Email**: Here's a little test of your sentience - take each segment of the following email address, and reverse it. (e.g. oof@rab.zab would become foo@bar.baz): gnuhcwj@liamtoh.moc
 
 ### <a id="Contributions"></a>Contributions
