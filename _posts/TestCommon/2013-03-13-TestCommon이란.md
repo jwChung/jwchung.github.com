@@ -2,14 +2,13 @@
 layout: post
 title: TestCommon이란?
 tags : [TestCommon]
-published: true
 ccl: ko
 date : 2013-03-13 04:00:00 UTC
 ---
 {% include JB/setup %}
 
-**Test-Driven Development에서 Test에 관계되지 않는 객체를 자동으로 생성함으로써,
-개발자가 테스트하고자 하는 케이스에만 집중할 수 있게 한다.**
+**TestCommon은 Test-Driven Development에서 Test와 관계되지 않는 객체를 자동으로 생성함으로써,
+개발자가 테스트하고자 하는 케이스에만 집중할 수 있게 해준다.**
 
 예를들어, 아래의 `BankAccount`클래스에서 `Deposite`메소드를 테스트한다고 가정해 보자.
 
@@ -48,17 +47,17 @@ public void DepositTest()
     var owner = "owner value";
     var sut = new BankAccount(owner, initialAmount);
 
-    decimal depositedAmount = 100m;
+    decimal depositAmount = 100m;
 
     // Act
-    sut.Deposit(depositedAmount);
+    sut.Deposit(depositAmount);
 
     // Assert
-    decimal expected = depositedAmount + initialAmount;
+    decimal expected = initialAmount + depositAmount;
     Assert.Equal(expected, sut.Balance);
 }
 ```
-주) `FactAttribute`는 [Xunit] Test Framework에서 제공하는 클래스입니다.
+주) `FactAttribute`는 [Xunit] Test Framework에서 제공하는 클래스이다.
 
 <!-- break -->
 
@@ -78,13 +77,13 @@ public void DepositTestUsingFixtureClass()
     decimal initialAmount = fixture.Create<decimal>();
     var sut = fixture.Build<BankAccount>().ToCtor(initialAmount).Create();
 
-    decimal depositedAmount = fixture.Create<decimal>();
+    decimal depositAmount = fixture.Create<decimal>();
 
     // Act
-    sut.Deposit(depositedAmount);
+    sut.Deposit(depositAmount);
 
     // Assert
-    decimal expected = depositedAmount + initialAmount;
+    decimal expected = initialAmount + depositAmount;
     Assert.Equal(expected, sut.Balance);
 }
 ```
@@ -105,10 +104,10 @@ public void DepositTestUsingAutoTheory(
 {
     // Arrange
     // Act
-    sut.Deposit(depositedAmount);
+    sut.Deposit(depositAmount);
 
     // Assert
-    decimal expected = depositedAmount + initialAmount;
+    decimal expected = initialAmount + depositAmount;
     Assert.Equal(expected, sut.Balance);
 }
 ```
