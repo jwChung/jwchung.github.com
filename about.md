@@ -17,5 +17,5 @@ Do you have any question for me? Don't hesitate and contact me by the following 
 ### <a id="Contributions"></a>Contributions
 I'm happy to accept contributions such as:
 
-* Your opinion for my article
+* Your opinion about my article
 * Corrections of typos and the like
