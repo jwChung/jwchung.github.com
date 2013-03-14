@@ -67,6 +67,9 @@ public void DepositTest()
 이 값은 `Fixture` 객체에서 자동으로 값을 생성하게 되며,
 값을 어떤 방식(deterministic, non-deterministic)으로 부여할지에 대한 메카니즘 또한 제공하고 있다.
 
+
+<a id="DepositTestUsingFixtureClass"></a>
+
 ```c#
 [Fact]
 public void DepositTestUsingFixtureClass()
@@ -94,6 +97,8 @@ public void DepositTestUsingFixtureClass()
 
 [TestCommon]에서는 `AutoTheoryAttribute`를 통해 테스트에 필요한 객체를 아래와 같이 테스트 메소드의 파라메타로 넘겨받을 수 있다.
 또한, `initialAmount`과 같이 특정객체(`sut`)의 생성자 파라메타가 될 경우 `ToCtorAttribute`와 `BuildAttribute`를 통해 이 관계를 설정할 수 있게 한다.
+
+<a id="DepositTestUsingAutoTheory"></a>
 
 ```c#
 [AutoTheory]
