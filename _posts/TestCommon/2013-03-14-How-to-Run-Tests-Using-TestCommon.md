@@ -3,7 +3,7 @@ layout: post
 title: How to Run Tests Using TestCommon
 tags : [TestCommon, Tools]
 ccl: ko
-date : 2013-03-14 5:45 UTC
+date : 2013-03-14 05:45:00 UTC
 ---
 {% include JB/setup %}
 
