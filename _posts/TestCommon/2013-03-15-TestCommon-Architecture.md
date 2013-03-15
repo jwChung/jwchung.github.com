@@ -64,7 +64,7 @@ TestCommon에서는 [Chain of responsibility 패턴]에 대한 ISpecimenProvider
 생성자를 실행을 통해 객체생성을 시도하게되어 결국 임의 문자열을 생성할 수 없게 될 것이다.
 
 *이상에서의 TestCommon Architecture설명은 실제 구현된 것과 정확히 일치하지는 않는다.
-설명을 보다 쉽게하기 위해서 디자인(위 그림)을 간단하게 나타내어 설명하였다.*
+설명을 보다 쉽게하기 위해서 디자인(위 그림)을 개념적으로 표현하여 설명하였다.*
 
 
 [Composite 패턴]: <http://ko.wikipedia.org/wiki/%EC%BB%B4%ED%8F%AC%EC%A7%80%ED%8A%B8_%ED%8C%A8%ED%84%B4>
