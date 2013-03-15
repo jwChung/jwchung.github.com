@@ -125,12 +125,6 @@ Reflecton Type
 --------------
 앞서 살펴본 **Non-Refletion Type**은 생성자를 통해 객체를 생성하는 것이 불가능하거나,
 객체생성 후 **Many Type**처럼 추가적인 설정이 필요한 Type을 말한다면 **Reflecton Type**은 그외 모든 타입을 말한다.
-**Reflecton Type**의 객체를 생성하기 위해서는 다음과 같은 고려사항이 몇가지 있다.
-
-1.  생성자 선택: 생성자가 2개 이상일 경우 어느 생성자를 사용할 것인지
-2.  Consructor Injection: 생성자 파라메타를 통해 의존객체(Dependency)를 직접설정해 줄 것인지 아니면 [TestCommon]에서 제공하는 임의의 객체(값)를 사용할 것인지
-3.  Setter Injection: 특정 프라퍼티 Setter를 통해 의존객체(Dependency)를 설정해 줄 것인지
-4.  기타 설정: 객체 생성 후 특정 메소드를 실행할 것인지
 
 맺음말
 ------
