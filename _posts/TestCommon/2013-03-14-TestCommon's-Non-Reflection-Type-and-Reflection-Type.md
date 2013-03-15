@@ -83,7 +83,7 @@ Non-Reflecton Type
 ###Simple Type
 **Non-Reflecton Type** 중 .Net Framework에서 기본이 되는 타입을 **Simple Type**으로 분류하며 해당되는 타입들은 아래와 같다.
 
-*   Numerics
+*   **Numerics**
     -   byte
     -   sbyte
     -   decimal
