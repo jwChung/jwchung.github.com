@@ -159,8 +159,6 @@ public void TestCommon_CreatesEnumType()
 Simple Type 들 중 `string`과 `DateTime`은 `IdGenerator`와 상관없이 non-deterministic 값을 리턴하게 된다.
 `string`은 guid값을, `DateTime`은 현재시간을 나타내는 `DateTime.Now`를 리턴한다.
 
-[Non Reflection Type과 Reflection Type]: /TestCommon's-Non-Reflection-Type-and-Reflection-Type
-
 ```c#
 [Fact]
 public void TestCommon_CreatesStringType()
@@ -185,9 +183,4 @@ public void TestCommon_CreatesDateTimeType()
 }
 ```
 
-
-
-
-
-
-
+[Non Reflection Type과 Reflection Type]: /TestCommon's-Non-Reflection-Type-and-Reflection-Type
