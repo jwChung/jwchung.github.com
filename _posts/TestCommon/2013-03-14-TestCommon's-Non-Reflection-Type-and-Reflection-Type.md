@@ -112,7 +112,7 @@ MailAccount 객체를 생성하기 위해서 먼저 `owner`에 대한 `Person` �
 
 #### Special Type
 
-**Special Type**은 아래와 같이 **Simple Type**에도 불류되지 않고 **Many Type**에도 분류되지 않는 특별한 객체 타입들을 일컫는다.
+**Special Type**은 아래와 같이 **Simple Type**에도 불류되지 않고 **Many Type**에도 분류되지 않는 특별한 타입들을 일컫는다.
 향후 [TestCommon]에 특정기능을 추가하거나 버그를 수정하기 위해, 또 다른 타입이 이 범주에 추가 될 수 있다.
 
 *   Delegate
