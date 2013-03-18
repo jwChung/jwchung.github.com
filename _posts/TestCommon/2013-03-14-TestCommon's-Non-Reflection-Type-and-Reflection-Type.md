@@ -7,8 +7,7 @@ date : 2013-03-14 11:58:00 UTC
 ---
 {% include JB/setup %}
 
-서론
-----
+### 서론
 아래의 `MailAccountTest` 클래스의 `TestCommon_ConstructsInstanceOfComplexType` 테스트 메소드를 실행해 해 보자.
 
 ```c#
@@ -72,15 +71,14 @@ MailAccount 객체를 생성하기 위해서 먼저 `owner`에 대한 `Person` �
 
 <!-- break -->
 
-Non-Reflecton Type
-------------------
+### Non-Reflecton Type
 예를들어 `int` 같은 값은 생성자를 통해 특정 값을 생성하는 것이 불가능하다.
 이러한 값은 [TestCommon]에서 0과 100사이의 수를 랜덤으로 부여(기본 설정 - non-deterministric)할 수 있고
 0부터 1씩 증가하는 수를 부여(deterministric)할 수도 있다.
 `int`와 같이 생성자를 통해 객체(혹은 값)를 생성할 수 없거나 혹은 `List<string>`과 같이
 객체 생성후 추가적인 설정(자식객체 `Add`)이 필요한 경우의 타입들을 통칭하여 **Non-Reflecton Type**이라한다.
 
-### Simple Type
+#### Simple Type
 **Non-Reflecton Type** 중 .Net Framework에서 기본이 되는 타입을 **Simple Type**으로 분류하며 해당되는 타입들은 아래와 같다.
 
 *   Numerics
@@ -102,7 +100,7 @@ Non-Reflecton Type
 *   enum
  
 
-### Many Type
+#### Many Type
 **Many Type** 는 컬렉션 객체를 말하는 것으로 아래와 같은 타입에 대해서 [TestCommon]은 해당 객체생성과 더불어
 미리 설정되어 있는 `ManyCount`값에 따라 자식객체를 추가시켜 준다.
 예를들어 `List<string>` 타입에 대해 [TestCommon]은 디폴트 `ManyCount`로 3개의 `string`객체를
@@ -112,7 +110,7 @@ Non-Reflecton Type
 *   List\<T\>
 *   Dictionary\<TKey, TValue\>
 
-### Special Type
+#### Special Type
 
 **Special Type**은 아래와 같이 **Simple Type**에도 불류되지 않고 **Many Type**에도 분류되지 않는 특별한 객체 타입들을 일컫는다.
 향후 [TestCommon]에 특정기능을 추가하거나 버그를 수정하기 위해, 또 다른 타입이 이 범주에 추가 될 수 있다.
@@ -121,13 +119,11 @@ Non-Reflecton Type
 *   Lazy\<T\>
 *   Type
 
-Reflecton Type
---------------
+### Reflecton Type
 앞서 살펴본 **Non-Refletion Type**은 생성자를 통해 객체를 생성하는 것이 불가능하거나,
 객체생성 후 **Many Type**처럼 추가적인 설정이 필요한 Type을 말한다면 **Reflecton Type**은 그외 Reflecton을 통행 객체를 생성할 수 있는 모든 타입을 말한다.
 
-맺음말
-------
+### 맺음말
 이번 포스트에서는 [TestCommon]에서 제공하는 객체타입을 크게 **Non-Refletion Type**과 **Refletion Type**으로 나누어 간략히 살펴보았다.
 이어지는 포스트들에서는 각 카테고리별 타입에 대해 보다 자세히 살펴볼 것이다.
 
