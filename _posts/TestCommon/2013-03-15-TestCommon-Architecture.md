@@ -42,7 +42,7 @@ TestCommon의 `Fixture` 객체는 `SpecimenContext`라는 객체를 가지고,
 `CompositeSpecimenProvider` 객체는 이름에서 알 수 있듯이 `ISpecimenProvider`에 대해 [Composite 패턴]을 이루고 있다.
 테스트 객체를 생성하기 위해 `Fixture.Create<T>` 메소드를 호출하면
 `Type`객체(`typeof(T)`)가 최상위 `CompositeSpecimenProvider`객체 `Create`메소드의 `source`로 전달된다.
-`ISpecimenContext`타입 `context`파마메타 객체는 위 그림에서 `SpecimenContext` 타입의 객체를 나타내며 `Fixture`객체안에서 하나의 객체만 존재한다.
+`ISpecimenContext`타입 `context`파라메타 객체는 위 그림에서 `SpecimenContext` 타입의 객체를 나타내며 `Fixture`객체안에서 하나의 객체만 존재한다.
 
 ```c#
 internal interface ISpecimenProvider
