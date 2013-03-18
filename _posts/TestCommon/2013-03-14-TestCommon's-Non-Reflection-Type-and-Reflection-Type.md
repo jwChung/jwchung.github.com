@@ -124,7 +124,7 @@ Non-Reflecton Type
 Reflecton Type
 --------------
 앞서 살펴본 **Non-Refletion Type**은 생성자를 통해 객체를 생성하는 것이 불가능하거나,
-객체생성 후 **Many Type**처럼 추가적인 설정이 필요한 Type을 말한다면 **Reflecton Type**은 그외 모든 타입을 말한다.
+객체생성 후 **Many Type**처럼 추가적인 설정이 필요한 Type을 말한다면 **Reflecton Type**은 그외 Reflecton을 통행 객체를 생성할 수 있는 모든 타입을 말한다.
 
 맺음말
 ------
