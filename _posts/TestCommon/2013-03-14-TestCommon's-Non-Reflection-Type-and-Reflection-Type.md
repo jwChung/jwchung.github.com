@@ -80,7 +80,7 @@ MailAccount 객체를 생성하기 위해서 먼저 `owner`에 대한 `Person` �
 #### Simple Type
 **Non-Reflecton Type** 중 .Net Framework에서 기본이 되는 타입을 **Simple Type**으로 분류하며 해당되는 타입들은 아래와 같다.
 
-*   Numerics
+*   **Numerics**
     -   byte
     -   sbyte
     -   decimal
@@ -96,7 +96,7 @@ MailAccount 객체를 생성하기 위해서 먼저 `owner`에 대한 `Person` �
 *   bool
 *   string
 *   datetime
-*   enum
+*   enum  
  
 
 #### Many Type
@@ -107,12 +107,12 @@ MailAccount 객체를 생성하기 위해서 먼저 `owner`에 대한 `Person` �
 
 *   Array
 *   List\<T\>
-*   Dictionary\<TKey, TValue\>
+*   Dictionary\<TKey, TValue>  
 
 #### Special Type
 
-**Special Type**은 아래와 같이 **Simple Type**에도 불류되지 않고 **Many Type**에도 분류되지 않는 특별한 타입들을 일컫는다.
-향후 [TestCommon]에 특정기능을 추가하거나 버그를 수정하기 위해, 또 다른 타입이 이 범주에 추가 될 수 있다.
+**Special Type**은 아래와 같이 **Simple Type**에도 분류되지 않고 **Many Type**에도 분류되지 않는 특별한 타입들을 일컫는다.
+향후 [TestCommon]에 특정기능을 추가하거나 버그를 수정하기 위해, 또 다른 타입이 이 범주에 추가될 수 있다.
 
 *   Delegate
 *   Lazy\<T\>
