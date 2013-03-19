@@ -7,6 +7,9 @@ date : 2013-03-19 06:04:00 UTC
 ---
 {% include JB/setup %}
 
+*이번 포스트를 이해하기 위해서는 [Test Double]과 [Moq] 프레임워크에 대한 이해가 선행되어야한다.
+[Moq]의 도움말은 [여기](https://code.google.com/p/moq/wiki/QuickStart)를 참고하기 바란다.*
+
 ### Mocked Instance
 TestCommon의 `Fixture.Creat<T>` 메소드를 통해 Reflection Type 객체를 생성하면,
 디폴트로 [Moq] 프레임워크를 이용하여, Mocked Instance를 생성한다. 아래코드를 보자.
@@ -100,7 +103,6 @@ public void TestCommon_CreatesMockedInstanceToOverideMethod()
 ```
 
 
-
+[Test Double]: http://xunitpatterns.com/Using%20Test%20Doubles.html
 [Moq]: https://github.com/Moq/moq4
 [DOC]: http://xunitpatterns.com/DOC.html
-[Test Double]: http://xunitpatterns.com/Using%20Test%20Doubles.html
