@@ -11,7 +11,7 @@ title: Jin-Wook Chung's blog
    <div>
    {{ post.content | split:'<!-- break -->' | first }}
    {% if post.content contains '<!-- break -->' %}
-   <a href="{{ post.url }}">read more</a>
+   <a href="{{ post.url }}">Read more...</a>
    {% endif %}
    </div>
    <hr>
@@ -20,9 +20,12 @@ title: Jin-Wook Chung's blog
 <!-- Pagination links -->
 <div class="pagination">
   {% if paginator.previous_page %}
-    <a href="/page{{paginator.previous_page}}" class="next">Next</a>
-  {% else %}
-  {% endif %}
+      {% if paginator.previous_page == 1 %}
+      <a href="/" title="Previous Page">Next</a>
+      {% else %}
+      <a href="/page{{ paginator.previous_page }}/" title="Previous Page">Next</a>
+      {% endif %}
+    {% endif %}
   {% if paginator.next_page %}
     <a href="/page{{paginator.next_page}}" class="previous ">Previous</a>
   {% else %}
