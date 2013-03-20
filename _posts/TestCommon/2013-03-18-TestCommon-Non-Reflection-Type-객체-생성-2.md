@@ -13,13 +13,13 @@ date : 2013-03-18 04:20:00 UTC
 ### Many Type
 
 TestCommon은 아래의 컬렉션에 대해서는 객체 생성 후 컬렉션의 아이템을 추가로 생성하여 `Add`한다.
-이 때 `Add`하게 될 아이템의 개수는 `Fixure.ManyCount'를 설정할 수 있으며 기본 값은 3이다.
+이 때 `Add`하게 될 아이템의 개수는 `Fixure.ManyCount`를 통해 설정할 수 있으며 기본 값은 3이다.
 
 *   Array
 *   List\<T\>
 *   Dictionary\<TKey, TValue\>
 
-아래와 같은 실제 사용예제들을 보면, 특별한 설명 필요없이 쉽게 이해할 수 있다.
+아래와 같은 실제 사용 예제를 보면, 특별한 설명 필요없이 쉽게 이해할 수 있다.
 
 ```c#
 [Fact]
@@ -61,7 +61,7 @@ public void TestCommon_CreatesDictionaryType()
 
 
 ### Special Type
-**Special Type**은 아래와 같이 **Simple Type**에도 불류되지 않고 **Many Type**에도 분류되지 않는 특별한 타입들이다.
+**Special Type**은 아래와 같이 **Simple Type**에도 분류되지 않고 **Many Type**에도 분류되지 않는 특별한 타입들이다.
 **Special Type** 범주의 타입들은 차후, 추가되거나 삭제될 수 있다.
 
 *   Delegate
@@ -70,8 +70,8 @@ public void TestCommon_CreatesDictionaryType()
 
 `Delegate`타입은 `void`인 경우와 리턴타입을 가지는 것으로 나누어 생각해 볼 수 있는데,
 `void`인 `Delegate`타입의 경우는 empty body이다.
-아래코드에서 `Action`타입 객체 생성을 예제를 보면 `voidDelegate`객체는 `null`이 아닌 델리게이트 객체를 리턴하지만
-`voidDelegate`객체는 실행할 코드를 가지고 있지 않다.(empty body)
+아래코드에서 `Action`타입의 `voidDelegate`객체는 `null`이 아닌 델리게이트 객체를 리턴하지만
+실행할 코드를 가지고 있지 않다.(empty body)
 
 ```c#
 [Fact]
@@ -89,7 +89,7 @@ public void TestCommon_CreatesVoidDelegateType()
 }
 ```
 
-리턴타입을 가지는 `Delegate`타입의 경우는 리턴타입에 해당하는 익명이 객체를 반환하는데,
+리턴타입을 가지는 `Delegate`타입의 경우는 리턴타입에 해당하는 익명 객체를 반환하는데,
 델리게이트 객체를 실행할 때 마다 새로운 객체를 리턴하는 것이 아니라 매 호출 시마다 동일한 객체를 리턴하도록 되어 있다.
 
 ```c#
@@ -102,7 +102,7 @@ public void TestCommon_CreatesReturnDelegateType()
 }
 ```
 
-TestCommon은 [Lazy\<T\>]타입에 대해 아래코드와 같이 `T`타입 익명 객체를 설정하여 `Value` 프라퍼티를 통해 접근할 수 있도록한다.
+TestCommon은 [Lazy\<T\>]타입에 대해 아래코드와 같이 `T`타입 익명 객체를 `Value` 프라퍼티를 통해 접근할 수 있도록한다.
 
 ```c#
 [Fact]
@@ -115,7 +115,7 @@ public void TestCommon_CreatesLazyType()
 }
 ```
 
-TestCommon은 `Type`객체에 대해 가장 일반적이라 할 수 있는 `typeof(object)`결과를 리턴한다.
+TestCommon은 `Type`객체에 대해 가장 일반적이라 할 수 있는 `typeof(object)`을 리턴한다.
 
 ```c#
 [Fact]

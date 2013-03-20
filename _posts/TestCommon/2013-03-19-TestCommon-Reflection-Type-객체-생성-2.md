@@ -15,7 +15,7 @@ TestCommon의 `Fixture.Creat<T>` 메소드를 통해 Reflection Type 객체를 �
 디폴트로 [Moq] 프레임워크를 이용하여, Mocked Instance를 생성한다. 아래코드를 보자.
 `Person` 클래스는 [이전 포스트](/TestCommon-Reflection-Type-객체-생성-1)를 참고하자.
 `actual` 변수의 결과는 `Person` 타입과 같지 않고, `Castle.Proxies.PersonProxy` 타입이라는 것을 보여주는데,
-이 말은 `actual`이 [Moq] 프레임워크를 이용하여 `new Mock<Person>().Object`를 통해 설정되었다는 것을 의미한다.
+이 것은 `actual`이 [Moq] 프레임워크를 이용하여 `new Mock<Person>().Object`를 통해 설정되었다는 것을 의미한다.
 즉, `actual`은 **Mocked Instance**이다.
 
 
@@ -35,7 +35,7 @@ public void TestCommon_CreatesMockedInstanceAsDefault()
 <!-- break -->
 
 ### Abstract 타입 객체 생성
-TestCommon이 [Moq] 프레임워크를 통해 Mocked Instance를 생성하므로, 인터페이스와 추사클래스에 대해서도 아래와 같이 객체 생성이 가능하다.
+TestCommon이 [Moq] 프레임워크를 통해 Mocked Instance를 생성하므로, 인터페이스와 추상클래스에 대해서도 아래와 같이 객체 생성이 가능하다.
 
 ```c#
 [Fact]
@@ -68,6 +68,8 @@ public void TestCommon_CreatesMockedInstanceForAbstractClass()
 
 아래 예제코드에서 보듯이 `textWriter`변수가 **Mocked Instance**로 설정됨으로,
 실제 `TextWriter` 클래스를 이용하지 않고 [Test Double]을 통하여 `Log`메소드를 테스트할 수 있게 해 준다.
+즉, TestCommon의 `Fixture.Creat<T>` 메소드를 통해 반환되는 Mocked Instance는
+실제 `T` 타입의 객체와 동일하게 행동하지만, 사용자로 하여금 **객체 행동을 바꿀 수 있는 수단을 제공**하고 있다.
 
 ```c#
 public class LoggerClass

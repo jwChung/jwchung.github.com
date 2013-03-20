@@ -16,7 +16,7 @@ Non Reflection Type 객체에는 다음과 같은 세 종류가 있으며,
 -   Many Type
 -   Special Type
 
-Simple Type은 아래에서 보듯이 총 16가지 타입들이 있는데(볼드체는 분류이름) 이중 Id에 의해 값이 결정되는 타입 14가지와 그렇지 않은 타입(datetime, string) 2가지가 있다.
+Simple Type은 아래에서 보듯이 총 16가지 타입들이 있는데(볼드체는 분류이름) 이 중 Id에 의해 값이 결정되는 타입 14가지와 그렇지 않은 타입(datetime, string) 2가지가 있다.
 
 -   **Id에 의해 값이 결정**
     -   **Numerics**
@@ -47,7 +47,7 @@ Simple Type은 아래에서 보듯이 총 16가지 타입들이 있는데(볼드
 이때 Id 0은 'a'가 매치되며, 1은 'b', 2는 'c', ...., 24는 'y', 그리고 25는 'z', 26은 다시 'a' 이런식의 반복이 되며,
 만약 음수의 정수가 입력되면 절대값처리된 후, `char`가 매치가 된다.
 
-`IdGenerator` 객체는 타입당 하나의 개체가 할당됨으로 Id에 의해 값이 결정되는 타입들은 서로다른 `IdGenerator` 객체를 가진다.
+`IdGenerator` 객체는 타입당 하나의 개체가 할당됨으로 Id에 의해 값이 결정되는 타입들은 서로다른 `IdGenerator` 객체를 가진다. 
 Id에 의해 값이 결정되는 모든 14가지 타입들에 대해서는 **디폴트 `IdGenerator`는 0보다 크거나 같고, 100보다 작은 범위의 랜덤 `Int32`값이다**.
 디폴트 `IdGenerator`는 `Fixture` 클래스의 `SetDefaultIdGeneratorFactory` 메소드를 통해 변경할 수 있다.
 

@@ -8,7 +8,7 @@ date : 2013-03-15 02:34:00 UTC
 {% include JB/setup %}
 
 이번 포스트는 TestCommon의 내부 Architecture를 살펴보려 한다.
-일단 아래 그림에서 `|-- ` 기호는 `HAS`관계이다.
+아래 그림에서 `|-- ` 기호는 `HAS`관계이다.
 예를 들어 아래 첫 번째 줄과 두 번째 줄에서 "`Fixture` 객체는 `SpecimenContext` 객체를 가진다"라고 이해할 수 있고,
 `:` 표시는 `IS`관계(또는 상속관계)를 나타내는 것으로 두번 째 줄에서 `SpecimenContext` 클래스는 `ISpecimenProvider` 타입을 상속한다라고 이해할 수 있다.
 
@@ -54,16 +54,16 @@ internal interface ISpecimenProvider
 만약 주어진 `source`에 대한 책임을 가지는 `ISpecimenProvider`를 만나면 `Create` 메소드 실행하고 그 결과 값을 리턴하는 것으로 트리검색을 종료하게 된다.
 `ISpecimenProvider`는 [Composite 패턴]을 이루고 있지만 그것 보다 [Chain of responsibility 패턴]으로 구현되었다는 점에 더욱 주목할 필요가 있다.
 
-예를 들어, `Fixture.Create<int[]>()`라는 메소드를 실행하게 된다면, Simple Type에 대한 모든 `ISpecimenProvider` 객체를 탐색하고 난 후
+예를 들어, `Fixture.Create<int[]>`라는 메소드를 실행하게 된다면, Simple Type에 대한 모든 `ISpecimenProvider` 객체를 탐색하고 난 후
 `ArraySpecimenProvider` 객체를 만나면 비로소 배열 객체를 생성하고 트리 탐색을 끝내게 되는 것이다.
-따라서 Special Type과 Reflection Type은 트리검색 할 필요가 없다.
+따라서 Special Type과 Reflection Type은 트리검색할 필요가 없다.
 만약 트리탐색을 끝까지 하였는데도 특정 `source`가 처리되지 않으면 최후 `ThrowingNullSpecimenException` 객체를 만나 예외를 발생시키는 것으로 끝을 맺게된다.
 
 TestCommon에서는 [Chain of responsibility 패턴]에 대한 ISpecimenProvider 순서가 중요하다. 위 그림에서 `ThrowingNullSpecimenException` 객체를 최상위로 배치한다면
 모든 `Fixture.Create<T>()`결과는 예외를 발생시키게 될 것이며, 만약 Reflection Type에 대한 `CompositeSpecimenProvider` 객체를 최상위로 배치한다면 `string`같은 Simple Type에 대해서도
 생성자를 실행을 통해 객체생성을 시도하게되어 결국 임의 문자열을 생성할 수 없게 될 것이다.
 
-*이상에서의 TestCommon Architecture설명은 실제 구현된 것과 정확히 일치하지는 않는다.
+*이상에서의 TestCommon Architecture설명은 실제 구현된 것과 일치하지 않는다.
 설명을 보다 쉽게하기 위해서 디자인(위 그림)을 개념적으로 표현하여 설명하였다.*
 
 

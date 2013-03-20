@@ -72,7 +72,7 @@ MailAccount 객체를 생성하기 위해서 먼저 `owner`에 대한 `Person` �
 
 ### Non-Reflecton Type
 예를들어 `int` 같은 값은 생성자를 통해 특정 값을 생성하는 것이 불가능하다.
-이러한 값은 [TestCommon]에서 0과 100사이의 수를 랜덤으로 부여(기본 설정 - non-deterministric)할 수 있고
+이러한 값은 [TestCommon]에서 랜덤으로 부여(기본 설정은 non-deterministric)할 수 있고
 0부터 1씩 증가하는 수를 부여(deterministric)할 수도 있다.
 `int`와 같이 생성자를 통해 객체(혹은 값)를 생성할 수 없거나 혹은 `List<string>`과 같이
 객체 생성후 추가적인 설정(자식객체 `Add`)이 필요한 경우의 타입들을 통칭하여 **Non-Reflecton Type**이라한다.
