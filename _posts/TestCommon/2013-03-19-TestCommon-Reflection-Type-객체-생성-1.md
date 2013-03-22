@@ -97,7 +97,7 @@ public void TestCommon_CreatesInstanceUsingValueOfCtors()
 }
 ```
 
-### AutoProperties
+<h3 id="AutoProperties">AutoProperties</h3>
 특정 객체의 의존객체들([DOC: Depended-On Component][DOC])를 설정하는 방법은 생성자 선택을 통한 익명의 생성자 파라메타 값을 넘겨주는 방법 외에
 프라퍼티 값 설정을 통해서도 의존객체들을 설정할 수 있다.
 

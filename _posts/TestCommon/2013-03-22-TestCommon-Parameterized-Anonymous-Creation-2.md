@@ -90,7 +90,7 @@ public void ConstructorInjection_ByType_PassesValueToAllSameTypedParameters()
 
 #### 이름에 의한 방법
 파라메타 이름은 유일성이 보장되기 때문에 특정 파라메타에 대한 값 설정이 가능하다.
-아래 코드에서 확인 가능하자.
+아래 코드에서 확인하자.
 
 ```c#
 [Fact]
@@ -114,7 +114,7 @@ public void ConstructorInjection_ByName_PassesValueToSameNamedParameter()
 
 #### 포지션에 의한 방법
 파라메타 포지션 역시 유일성이 보장되기 때문에 특정 파라메타에 대한 값 설정이 가능하다.
-아래 코드에서 확인 가능하자.
+아래 코드에서 확인하자.
 
 ```c#
 [Fact]
