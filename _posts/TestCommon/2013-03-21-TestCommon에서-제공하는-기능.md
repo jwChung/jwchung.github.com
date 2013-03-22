@@ -42,7 +42,7 @@ var sut = fixture.Build<BankAccount>().ToCtor(initialAmount).Create();
 #### Customization
 **Customization**기능이란 특정 타입(`T`)의 객체 생성에 대해 사용자가 customization할 수 있는 방법을 제공해,
 `Create<T>` 메소드 실행시 그 설정된 customization을 통해 객체가 생성되는 기능을 말한다.
-이 기능은 `Fixture` 클래스의 `Customize<T>` 메소드를 통해 구현된다.
+이 기능은 `Fixture` 클래스의 `Customize` 메소드를 통해 구현된다.
 아래의 코드에서는 `string` 타입에 대한 간단한 customization의 예를 보여주는데, 이렇게 customization되면
 `fixture`의 `Create<string>` 메소드는 항상 `"anonymous string"`이란 값을 리턴하게 된다.
 
@@ -54,7 +54,7 @@ fixture.Customize(() => "anonymous string");
 #### AutoTheory
 AutoTheory 기능은 [TestCommon이란] 포스트에서 잠깐 언급이 된 적있다.
 이 기능은 매 테스트마다 필요한 객체를 생성하기 위해 `Fixture` 클래스의 `Create<T>` 혹은
-`Build<T>` 메소드를 실행할  필요없이 `AutoTheoryAttribute` 클래스를 사용하여,
+`Build<T>` 메소드를 실행할 필요없이 `AutoTheoryAttribute` 클래스를 사용하여,
 테스트 메소드 파라메타로 필요한 객체를 넘겨 받을 수 있는 기능을 말한다.
 
 [DepositTestUsingFixtureClass 테스트]에서 `AutoTheory`를 사용하게 되면
