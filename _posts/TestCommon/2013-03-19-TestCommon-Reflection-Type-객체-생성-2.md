@@ -10,7 +10,7 @@ date : 2013-03-19 06:04:00 UTC
 *이번 포스트를 이해하기 위해서는 [Test Double]과 [Moq] 프레임워크에 대한 이해가 선행되어야한다.
 [Moq]의 도움말은 [여기](https://code.google.com/p/moq/wiki/QuickStart)를 참고하기 바란다.*
 
-### Mocked Instance
+<h3 id="Mocked Instance">Mocked Instance</h3>
 TestCommon의 `Fixture.Creat<T>` 메소드를 통해 Reflection Type 객체를 생성하면,
 디폴트로 [Moq] 프레임워크를 이용하여, Mocked Instance를 생성한다. 아래코드를 보자.
 `Person` 클래스는 [이전 포스트](/TestCommon-Reflection-Type-객체-생성-1)를 참고하자.
