@@ -35,7 +35,7 @@ TestCommon에서는 디폴트로 `NonPrivate` 생성자들 중 파타메타 개�
 
 ```c#
 [Fact]
-public void ConstructorInjection_LetSelectCertainCtor()
+public void ConstructorInjection_LetsSelectCertainCtor()
 {
     // Arrange
     var fixture = new Fixture();

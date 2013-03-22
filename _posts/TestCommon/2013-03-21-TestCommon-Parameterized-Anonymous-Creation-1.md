@@ -130,7 +130,7 @@ Parameterized Anonymous Creation을 통해 객체를 생성하기 위해서는 �
 
 ```c#
 [Fact]
-public void WithCtors_DelimitCtorAccessModifier()
+public void WithCtors_DelimitsCtorAccessModifier()
 {
     // Arrange
     var fixture = new Fixture();
@@ -159,7 +159,7 @@ public void WithCtors_DelimitCtorAccessModifier()
 
 ```c#
 [Fact]
-public void WithGreedyCtor_LetUseGreedyCtor()
+public void WithGreedyCtor_LetsUseGreedyCtor()
 {
     // Arrange
     var fixture = new Fixture();
@@ -185,7 +185,7 @@ public void WithGreedyCtor_LetUseGreedyCtor()
 
 ```c#
 [Fact]
-public void WithCtor_LetSelectCertainCtor()
+public void WithCtor_LetsSelectCertainCtor()
 {
     // Arrange
     var fixture = new Fixture();
