@@ -77,6 +77,8 @@ Parameterized Anonymous Creation 기능에서의 사용자 설정은 아래와 �
 아래 `SpecimenBuilderTestType`는 Parameterized Anonymous Creation 기능 설명을 위한
 테스트 클래스이다.
 
+<a id="SpecimenBuilderTestType"></a>
+
 ```c#
 public class SpecimenBuilderTestType
 {
@@ -199,7 +201,7 @@ public void WithCtor_LetSelectCertainCtor()
 }
 ```
 
-### What`s Next?
+### What's Next?
 이번 포스트에서는 Parameterized Anonymous Creation 기능 설정 5가지 중
 첫 번째 **생성자 선택**에 대해 알아보았다.
 이후 포스트들에서 나머지 네 가지 설정에 대해 자세히 알아보도록 하자.
