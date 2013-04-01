@@ -9,7 +9,7 @@ date : 2013-04-01 07:43:00 UTC
 
 [이전 포스트(TestCommon - SpecimenMock)](/TestCommon-SpecimenMock/)를 끝으로 TestCommon의 기본적인 설명을 마치려한다.
 3월13일 [TestCommon이란](/TestCommon이란/) 글을 시작으로 총 [20개](/tags.html#TestCommon-ref)의 포스트들이 이에 해당한다.
-이글 이후의 TestCommon 설명에 대한 포스팅은 버전 **v3.1.3**을 기초로 추가/변경된 사항 혹은 버그수정이 될 것이다.
+이글 이후의 TestCommon 설명에 대한 포스팅은 버전 **v3.1.3**을 기초로 기능 추가/변경 혹은 버그 수정이 될 것이다.
 
 아래는 TestCommon의 버전 v3.1.3을 기초로 작성된 목차이다.
 
