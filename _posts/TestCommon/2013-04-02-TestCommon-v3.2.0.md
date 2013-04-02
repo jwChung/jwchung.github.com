@@ -144,7 +144,7 @@ public void RandomIdGenerator_SetDefaultIdGeneratorFactory_CannotBeSharedWithAll
     // Arrange
     var fixture = new Fixture();
 
-    // Using one instance of the RandomIdGenerator type is default for all the simpple types as the following.
+    // Using one instance of the RandomIdGenerator type is default for all the simple types as the following.
     ////var randomIdGenerator = new RandomIdGenerator(seed: RandomIdGenerator.Seed);
     ////fixture.SetDefaultIdGeneratorFactory(() => randomIdGenerator);
 
