@@ -110,7 +110,7 @@ Nondeterministic 값은 NondeterministicTest 문제점을 가지지만 test cove
 ### 날짜에 기초한 Random Seed 도입
 **TestCommon(v3.2.0)**에서는 test coverage 높이면서 NondeterministicTest문제를 해결하기 위해 Random Seed를 도입하였다.
 그런데 만약 Random Seed 숫자가 고정이 되어 있으면, 항상 정해진 순서로 값을 리턴하기 때문에
-NondeterministicTest문제는 해결이 되나, test coverage를 높일 수는 없다
+NondeterministicTest문제는 해결이 되나, test coverage를 높일 수는 없다.
 따라서 TestCommon(v3.2.0)는 현재의 날짜가 1년 365일 중 몇일 째인가를 따져 그 수를 Random Seed로 이용한다.
 `static` 프라퍼티인 `RandomIdGenerator.Seed`를 이용하면 테스트에 활용되는 Random Seed 넘버를 확인할 수 있다.
 
