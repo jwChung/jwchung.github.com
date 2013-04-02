@@ -24,9 +24,11 @@ public enum MockDefaultValue
 }
 ```
 
+
 `MockDefaultValue`를 사용하는 Mock 객체를 생성하기 위해서 TestCommon에서는 Moq의 `Mock<T>` 클래스를 상속하는
 `SpecimenMock<T>` 클래스를 정의하여 `DefaultValue` 프라퍼티를 아래와 같이 오버라이드한다.
 `DefaultValue` 값이 `2`이면 TestCommon의 `MockDefaultValue.Specimen` 값으로 취급하게 된다.
+
 
 ```c#
 public override DefaultValue DefaultValue
