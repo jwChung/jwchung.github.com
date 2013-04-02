@@ -24,11 +24,9 @@ public enum MockDefaultValue
 }
 ```
 
-
 `MockDefaultValue`를 사용하는 Mock 객체를 생성하기 위해서 TestCommon에서는 Moq의 `Mock<T>` 클래스를 상속하는
 `SpecimenMock<T>` 클래스를 정의하여 `DefaultValue` 프라퍼티를 아래와 같이 오버라이드한다.
 `DefaultValue` 값이 `2`이면 TestCommon의 `MockDefaultValue.Specimen` 값으로 취급하게 된다.
-
 
 ```c#
 public override DefaultValue DefaultValue
@@ -59,7 +57,6 @@ public override DefaultValue DefaultValue
 <!-- break -->
 
 <h3 id="SpecimenMock&lt;T&gt; 객체 생성">SpecimenMock&lt;T&gt; 객체 생성</h3>
-
 TestCommon에서 `SpecimenMock<T>` 타입의 객체는 생성자가 `public`으로 노출되지 않아
 `new` 연산자로 객체를 직접 생성할 수 없으나,
 `Fixture` 클래스의 `Create<T>` 또는 `Build<T>` 메소드를 통해 생성할 수 있다.
@@ -222,6 +219,6 @@ public void SpeicmenMock_CanReturnCustomizedValue()
 }
 ```
 
-[Moq]: https://github.com/Moq/moq4
-[Test Double]: http://xunitpatterns.com/Test%20Double.html
-[퀵스타트]: https://code.google.com/p/moq/wiki/QuickStart
+[Moq]: <https://github.com/Moq/moq4>
+[Test Double]: <http://xunitpatterns.com/Test%20Double.html>
+[퀵스타트]: <https://code.google.com/p/moq/wiki/QuickStart>
