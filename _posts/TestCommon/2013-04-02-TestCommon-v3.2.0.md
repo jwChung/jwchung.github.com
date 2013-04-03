@@ -27,9 +27,9 @@ public void StringType_IsBasedOnIdGenerator()
 
     // Act
     // Asserte
-    Assert.Equal("Anonymous00", fixture.Create<string>());
-    Assert.Equal("Anonymous01", fixture.Create<string>());
-    Assert.Equal("Anonymous02", fixture.Create<string>());
+    Assert.Equal("Anonymous0", fixture.Create<string>());
+    Assert.Equal("Anonymous1", fixture.Create<string>());
+    Assert.Equal("Anonymous2", fixture.Create<string>());
 }
 
 [Fact]
