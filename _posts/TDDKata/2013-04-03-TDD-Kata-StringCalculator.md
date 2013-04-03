@@ -7,7 +7,7 @@ date : 2013-04-03 07:35:00 UTC
 {% include JB/setup %}
 
 이번 글이 TDD Kata에 대한 두 번째 포스팅이다.
-이전 [FizzBuzz TDD Kata](/TDD-Kata-FizzBuzz-게임/)는 쉬운 TDD Kata 예제 중 하나다.
+이전 [FizzBuzz TDD Kata](/TDD-KATA-FizzBuzz-게임/)는 쉬운 TDD Kata 예제 중 하나다.
 이번에 소개할 [StringCalculator TDD Kata] 예제는 The Art of Unit Testing 저자인
 Roy Osherove가 만든 예제로 유명한 예제 중 하나다.
 
