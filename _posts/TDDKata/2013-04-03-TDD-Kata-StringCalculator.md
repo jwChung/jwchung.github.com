@@ -48,6 +48,8 @@ StringCalculator TDD Kata에서 Roy Osherove는 아래와 같은 사항에 유�
 *   사용자 구분자가 다음과 같은 형태로 여러 개 입력할 수 있도록 해라. "//[delimiter1][delimiter2]\n"  
 예를 들어, "//[--][%%]\n1--2%%3"는 6을 리턴한다.
 
+<!-- break -->
+
 #### 참고
 *   [StringCalculatorTest](https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/StringCalculatorKata/StringCalculatorTest.cs):  
 https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/StringCalculatorKata/StringCalculatorTest.cs
