@@ -83,7 +83,7 @@ public string Translate(int number)
 3.  15의 배수인 15, 30, 45가 입력되면 "FizzBuzz"를 리턴한다.
 4.  3과 5의 배수가 아닌 수인 1, 2, 4, 7, 8이 입력이 되면 해당 수에 대한 문자열을 리턴한다.
 
-### FizzBuzz TDD Kata 참고
+#### 참고
 TDD를 처음 접하시는 분이 위 스텝에 대한 테스트를 작성하기 힘들 수 있다.
 그런 분들은 [TestCommon 소스코드](https://github.com/jwchung/TestCommon)에서 [FizzBuzzTest](https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/FizzBuzzKata/FizzBuzzTest.cs)
 코드를 참고하시길 바란다.
