@@ -63,8 +63,8 @@ FizzBuzz게임이란 [위키디피아](http://en.wikipedia.org/wiki/Fizz_buzz)�
 
 ### FizzBuzz TDD Kata
 #### 준비
-FizzBuzzGame와 FizzBuzzGameTest란 클래스를 각각 만든다.
-FizzBuzzGame 클래스에 아래와 같은 메소드를 만들고 이를 TDD Kata를 통해 구현해 보자.
+FizzBuzz와 FizzBuzzTest란 클래스를 각각 만든다.
+FizzBuzz 클래스에 아래와 같은 메소드를 만들고 이를 TDD Kata를 통해 구현해 보자.
 
 ```c#
 public string Translate(int number)
@@ -85,16 +85,16 @@ public string Translate(int number)
 
 ### FizzBuzz TDD Kata 참고
 TDD를 처음 접하시는 분이 위 스텝에 대한 테스트를 작성하기 힘들 수 있다.
-그런 분들은 [TestCommon 소스코드](https://github.com/jwchung/TestCommon)에서 [FizzBuzzGameTest](https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/FizzBuzz/FizzBuzzGameTest.cs)
+그런 분들은 [TestCommon 소스코드](https://github.com/jwchung/TestCommon)에서 [FizzBuzzTest](https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/FizzBuzzKata/FizzBuzzTest.cs)
 코드를 참고하시길 바란다.
-물론 [FizzBuzzGame](https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/FizzBuzz/FizzBuzzGame.cs)에 대한 구현코드도 있는데, 비교대상으로만 이용하시기 바란다.
+물론 [FizzBuzz](https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/FizzBuzzKata/FizzBuzz.cs)에 대한 구현코드도 있는데, 비교대상으로만 이용하시기 바란다.
 
-*   FizzBuzzGameTest:  
-https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/FizzBuzz/FizzBuzzGameTest.cs
-*   FizzBuzzGame:  
-https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/FizzBuzz/FizzBuzzGame.cs
+*   FizzBuzzTest:  
+https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/FizzBuzzKata/FizzBuzzTest.cs
+*   FizzBuzz:  
+https://github.com/jwChung/TestCommon/blob/master/demo/TDDKata/FizzBuzzKata/FizzBuzz.cs
 
-TestCommon 소스코드에 있는 FizzBuzzGameTest는 TestCommon을 이용하여 작성되었다.
+TestCommon 소스코드에 있는 FizzBuzzTest는 TestCommon을 이용하여 작성되었다.
 TestCommon 인스톨 방법과 테스트 실행방법에 아래 포스트를 참고하기 바란다.
 
 *   [How to Get TestCommon](/How-to-Get-TestCommon)
