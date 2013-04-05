@@ -3,8 +3,6 @@ layout: post
 title: Isolating Static Method Call
 tags : [Unit Testing, TestCommon]
 date : 2013-04-04 13:49:00 UTC
-redirects:
-- /Static-Method-Unit-Testing
 ---
 {% include JB/setup %}
 

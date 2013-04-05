@@ -3,8 +3,6 @@ layout: post
 title: TDD Kata - FizzBuzz 게임
 tags : [TDD Kata, TestCommon]
 date : 2013-04-03 03:05:00 UTC
-redirects:
-- /TDD-KATA-FizzBuzz-게임
 ---
 {% include JB/setup %}
 
