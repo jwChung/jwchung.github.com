@@ -4,6 +4,7 @@ title: TfsBuilder 소개
 tags : [TfsBuilder]
 date : 2013-12-05 07:07:00 UTC
 ---
+{% include JB/setup %}
 
 [Visual Studio Online]에서는 무료로 월 60분의 빌드서비스를 제공하고 있습니다.
 CI(Continuous Integration)서버를 직접 구축하지 않고 이용할 수 있다는 것이 큰 매리트인 것 같습니다.
@@ -22,8 +23,6 @@ CI빌드를 제공하지 않고, 스케줄 빌드 혹은 매뉴얼(직접)빌드
 
 소스와 사용법에 대해서는 GitHub프로젝트 [TfsBuilder]에 있습니다.
 혹 질문 혹은 건의사항이 있으시면 이슈를 남겨 주시기 바랍니다.
-
-<!-- break -->
 
 [Visual Studio Online]: http://www.visualstudio.com/
 [가격정책]: http://www.windowsazure.com/ko-kr/pricing/details/visual-studio-online/
