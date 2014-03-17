@@ -22,7 +22,6 @@ CI빌드를 제공하지 않고, 스케줄 빌드 혹은 매뉴얼(직접)빌드
 그래서 Visual Studio Online 빌드 서비스훅을 만들어 보았습니다.
 
 소스와 사용법에 대해서는 GitHub프로젝트 [TfsBuilder]에 있습니다.
-혹 질문 혹은 건의사항이 있으시면 이슈를 남겨 주시기 바랍니다.
 
 [Visual Studio Online]: http://www.visualstudio.com/
 [가격정책]: http://www.windowsazure.com/ko-kr/pricing/details/visual-studio-online/
