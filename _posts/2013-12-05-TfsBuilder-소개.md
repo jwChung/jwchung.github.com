@@ -2,7 +2,6 @@
 layout: post
 title: TfsBuilder 소개
 tags : [TfsBuilder]
-date : 2013-12-05 07:07:00 UTC
 ---
 {% include JB/setup %}
 
