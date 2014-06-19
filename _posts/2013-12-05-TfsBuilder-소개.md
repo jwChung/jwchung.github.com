@@ -1,7 +1,7 @@
 ---
 layout: post
 title: TfsBuilder 소개
-tags : [TfsBuilder]
+tags : [Miscellaneous]
 ---
 {% include JB/setup %}
 
