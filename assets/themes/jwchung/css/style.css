@@ -179,3 +179,14 @@ img {max-width:100%}
 .pagination-right {
     text-align: right;
 }
+
+/* font sizes ======================================================= */
+
+body {
+    font-size: 16px;
+    line-height: 150%;
+}
+
+blockquote {
+    font-size: 120%;
+}
