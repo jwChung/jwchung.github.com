@@ -3,7 +3,6 @@
 permalink: /:title
 
 exclude: [".rvmrc", ".rbenv-version", "README.md", "Rakefile", "changelog.md"]
-pygments: true
 paginate: 10
 
 # Themes are encouraged to use these universal variables 
@@ -130,5 +129,7 @@ JB :
   # where [HELPER] is the name of the helper you are overriding.
   
 markdown:  kramdown
+
+highlighter: rouge
 
 redirects: yes
