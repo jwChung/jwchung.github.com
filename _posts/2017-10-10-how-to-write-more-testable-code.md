@@ -22,7 +22,7 @@ public async Task SignUp(string email, string password)
     ...
 
     // 비밀번호가 유효한지 검사합니다.
-    if (password.Length >= 8)
+    if (password.Length < 8)
         throw new ArgumentException("비밀번호는 최소 8자리 이상입니다.");
     ...
 
