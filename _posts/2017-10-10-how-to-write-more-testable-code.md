@@ -82,4 +82,29 @@ public class Email
 
 ### Function Root
 
-A 메소드는 특정 기능 수행의 진입점 역할을 한다. 
+A 메소드는 특정 기능 수행의 진입점 역할을 한다. 테스트하기 어려운 IO 관련 코드를 담고 있어야 함으로 그 자신 역시 테스트하기 어려운 형태가 되는 특징이 있다. 이런 메소드 또는 함수의 위치를 Function Root라 하자.
+
+[어플리케이션에 필요한 모듈들을 한꺼 번에 구성할 수 있는 장소를 Composition Root라고 한다.](http://blog.ploeh.dk/2011/07/28/CompositionRoot/) Composition Root 는 프로그램 시작점에 위치하지만 Function Root는 기능 시작점이라는 것에 차이점이 있다.
+
+Function Root 가 될 수 있는 위치를 프레임워크 별로 나눠 살펴보면 다음과 같다
+
+* UI 프로그램의 이벤트 핸들어
+* Web API 의 액션메소드
+* Azure Functions 또는 AWS Lambda 에서 호출되는 함수
+* etc 
+
+### Summary
+
+테스트하는 비용은 줄이기 위해서는 테스트하기 쉬운코드를 많이 작성해야 한다. 그러기 위해서는 테스트하기 쉬운코드와 그렇지 않은 코드를 구분해야 하고, 가능한  테스트하기 쉬운코드를 많이 작성해야 한다. 테스트하기 어려운 IO 관련 코드를 그렇지 않은 코드와 물리적으로 분리 시키자. 그러면 IO와 관련되지 않아 테스트하기 쉬운 순수함수 코드를 얻을 수 있다. IO 관련 코드는 Function Root 에 위치시키자. Function Root에서 안쪽으로 들어 올수록 테스트하기 어려운 코드가 많아지기 때문이다.
+
+아래 흐름을 보자. `-->` 표시는 참조한다, 의존한다는 의미로 사용되었다. 중요한 모듈(Domain Model)이 덜 중요한 모듈(Data Access)에 참조하고 있다. Dependency Inversion Principle(DIP) 위배에 해당한다.
+
+> User Interface Module --> Domain Model Module --> Data Access Module
+
+위 경우는 다음과 같이 바뀌어야 한다. Domain Model 모듈이 Data Access 모듈에 의존하는 것이 아니라 그 반대가 되어야 한다. 이 글에서 말하는 테스트비용 입장에서 보면, Domain Model 테스트에 IO 관련(Data Access) 모듈을 사용해야 한다. 테스트 어려움이 발생해 테스트 비용을 증가시키게 된다. Domain Model은 온전히 IO관련 작업에서 분리하여 순수함수 형태의 코드로 테스트 되어야 한다.
+
+> User Interface Module --> Domain Model Module <-- Data Access Module
+
+테스트하기 어려운 코드는 테스트하지 말아야 할까? 그렇지 않다 자동화테스트가  좋지만, 어렵거나 불가능한 경우는 수동테스트라도 해야 한다. 다음 글에서는 테스트하기 어려운 코드를 어떻게 다룰지에 대해 얘기해보려 한다.
+
+
