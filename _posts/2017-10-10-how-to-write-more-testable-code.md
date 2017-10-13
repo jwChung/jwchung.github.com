@@ -43,6 +43,8 @@ public class Email
         if (!value.Contains("@"))
             throw new ArgumentException("유효한 이메일 형식이 아닙니다.");
 
+        ...
+        
         this.Value = value;
     }
 
