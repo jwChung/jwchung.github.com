@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Test Humility
-tags : [unit-testing, tdd]
+tags : [testing, unit-testing, tdd]
 ---
 {% include JB/setup %}
 

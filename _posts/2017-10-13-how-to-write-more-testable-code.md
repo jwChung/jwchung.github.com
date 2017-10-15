@@ -1,7 +1,7 @@
 ---
 layout: post
 title: How to write more testable code
-tags : [unit-testing, tdd]
+tags : [testing, unit-testing, tdd]
 ---
 {% include JB/setup %}
 

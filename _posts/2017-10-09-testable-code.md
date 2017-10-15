@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Testable Code
-tags : [unit-testing, tdd]
+tags : [testing, unit-testing, tdd]
 ---
 {% include JB/setup %}
 
