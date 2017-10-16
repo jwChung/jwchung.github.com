@@ -5,15 +5,13 @@ tags : [testing, unit-testing, tdd]
 ---
 {% include JB/setup %}
 
-[프로그램에서 각 기능 진입점 역할을 하는 함수 또는 메소드를 Function Root 란 용어로 소개한 바 있다.](/how-to-write-more-testable-code#function-root) Function Root는 대체로 외부세상과 소통하는 IO 작업 담고 있어 테스트하기 힘든 코드로 분류된다. 테스트 비용을 줄이기 위해 테스트 가능한 코드는 Function Root로 부터 분리된다. 따라서 Function Root는 테스트하기 쉬운코드와 그렇지 않은 코드가 만나는 장소를 제공하게 되며 이들을 어떻게 구성하지가 주된 임무가 된다. 
-
-Function Root는 자동화테스트로 검증될 수 있다. 순수함수코드와 비순수함수 코드 전체를 가로지르는 통합테스트를 검증될 수 있는 것이다. 하지만 자동화테스트 비용이 높으면 이를 포기하고 수동테스트로 검증할 수도 있다. 이때 [수동테스트로 검증되는 Function Root는 겸손해야 한다.](/test-humility)
+[프로그램에서 각 기능 진입점 역할을 하는 함수 또는 메소드를 Function Root 란 용어로 소개한 바 있다.](/how-to-write-more-testable-code#function-root) Function Root는 대체로 외부세상과 소통하는 IO 작업 담고 있어 테스트하기 힘든 코드로 분류된다. 테스트 비용을 줄이기 위해 테스트 가능한 코드는 Function Root로 부터 분리된다. 따라서 Function Root는 테스트하기 쉬운코드와 그렇지 않은 코드가 만나는 장소를 제공하며, 이들을 어떻게 구성하지가 주된 임무가 된다. Function Root는 순수함수코드와 비순수함수코드 전체를 가로지르는 통합테스트로 검증할 수 있다. 하지만 자동화테스트 비용이 높으면 이를 포기하고 수동테스트로 검증할 수도 있다. 이때 [Function Root는 겸손해야 한다.](/test-humility)
 
 <!-- break -->
 
 ### Structure Inspection
 
-Function Root 내 IO 작업을 Test Double로 고립(isolation)시킨다면 Function Root를 단위테스트(unit testing)로 검증하는 것이 가능하다. 단위테스트는 다른 의존성으로 부터 고립된 최소 단위 API 테스트를 의미한다. 이때 고립이란, [Jessica Kerr](http://jessitron.com/) 의 표현을 빌려자면, [함수 파라메타를 통해서만 외부세상과 소통할 때 그 함수는 고립되었다고 한다.](http://blog.ploeh.dk/2015/05/07/functional-design-is-intrinsically-testable/)
+Function Root 내 IO 작업을 Test Double로 고립(isolation)시킨다면 Function Root를 단위테스트(unit testing)로도 검증하는 것이 가능하다. 단위테스트는 다른 의존성으로 부터 고립된 최소 단위 API 테스트를 의미한다. 이때 고립이란, [Jessica Kerr](http://jessitron.com/) 의 표현을 빌려자면, [함수 파라메타를 통해서만 외부세상과 소통할 때 그 함수는 고립되었다고 한다.](http://blog.ploeh.dk/2015/05/07/functional-design-is-intrinsically-testable/)
 
 > A function has the property of Isolation when the only information it has about the external word is passed into it via arguments.
 
