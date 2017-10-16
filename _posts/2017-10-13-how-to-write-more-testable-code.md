@@ -88,7 +88,7 @@ A 메소드는 특정 기능 수행의 진입점 역할을 한다. 테스트하�
 
 Function Root 가 될 수 있는 위치를 프레임워크 별로 나눠 생각해보면 다음과 같다
 
-* UI 프로그램의 이벤트 핸들어
+* UI 프로그램의 이벤트 핸들러
 * Web API 의 액션메소드
 * Azure Functions 또는 AWS Lambda 에서 호출되는 함수
 * etc 
