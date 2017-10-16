@@ -108,11 +108,11 @@ private class EmailConfirmationSpy : IEmailConfirmation
 }
 ```
 
-이같이 Function Root를 단위테스트로 접근하는 방식을 [Mark Seemann은 Structure Inspection 으로 설명했다.](http://blog.ploeh.dk/2013/04/04/structural-inspection/) Function Root를 이루는 각 단계가 테스트된 후 남은 일은 이들이 맞물려(구성되어) 전체가 잘 돌아가는지를 테스트하는 것이다. Structure Inspection은 복잡하게 구성된 시스템을 피드백이 빠른 단위테스트로 검증한다는 면에서 장점을 가진다. 하지만 다른 각도에서 생각해볼 문제가 있다.
+이같이 Function Root를 단위테스트로 접근하는 방식을 [Mark Seemann은 Structure Inspection이라고 했다.](http://blog.ploeh.dk/2013/04/04/structural-inspection/) Function Root를 이루는 각 단계가 테스트된 후 남은 일은 이들이 맞물려(composition) 전체가 잘 돌아가는지를 테스트하는 것이다. Structure Inspection은 복잡하게 구성된 시스템을 피드백이 빠른 단위테스트로 검증한다는 면에서 장점을 가진다. 하지만 다른 각도에서 생각해볼 문제가 있다.
 
 ### Reused Abstractions Principle(RAP)
 
-추상화란 본디 공통점을 바탕으로 한다. 공통점이란 최소 두 가지 대상물이 존재해야 발견된다. 만약 단위테스트를 위한 고립 목적으로만 추상화가 사용되었다면 [이는 RAP 위배에 해당한다.](http://www.codemanship.co.uk/parlezuml/blog/?postid=934) RAP 관점에서 올바른 추상화란 구현체가 최소 2개 이상일 때를 말한다. 위 회원가입 구현은 RAP를 위반한 것인가? 그럴 수도 있고 아닐 수도 있다. 사용된 추상화(`IUserStore`, `IEmailConfirmation`) 구현체가 얼마나 되는지 위 코드만으로는 확인될 수 없기 때문이다. 그럼 RAP를 위배한 코드는 나쁜가? 사용되지 않는 추상화를 도입했다는 것은 분명 비용 부담이다. 그러나 IO 관련 코드와 그렇지 않은 코드가 잘 맞물려 돌아가는지 Structure Inspection으로 검증할 수 있는 것은 장점이다.
+추상화란 본디 공통점을 바탕으로 한다. 공통점이란 최소 두 가지 대상물이 존재해야 발견된다. 만약 단위테스트를 위한 고립 목적으로만 추상화가 사용되었다면 [이는 RAP 위배에 해당한다.](http://www.codemanship.co.uk/parlezuml/blog/?postid=934) RAP 관점에서 올바른 추상화란 구현체가 최소 2개 이상일 때를 말한다. 위 회원가입 구현은 RAP를 위반한 것인가? 그럴 수도 있고 아닐 수도 있다. 사용된 추상화(`IUserStore`, `IEmailConfirmation`)의 구현체가 얼마나 되는지 위 코드만으로는 확인될 수 없기 때문이다. 그럼 RAP를 위배한 코드는 나쁜가? 사용되지 않는 추상화를 도입했다는 것은 분명 비용 부담이다. 그러나 Function Root의 구성(composition)을 Structure Inspection으로 검증할 수 있는 것은 장점이다.
 
 ### Test-induced design damage
 
@@ -122,7 +122,7 @@ David Heinemeier Hansson(DHH)이 쓴 [TDD is dead](http://david.heinemeierhansso
 
 > Test-first units leads to an overly complex web of intermediary objects and indirection in order to avoid doing anything that's "slow". Like hitting the database. Or file IO. Or going through the browser to test the whole system. It's given birth to some truly horrendous monstrosities of architecture. A dense jungle of service objects, command patterns, and worse.
 
-> 테스트 우선개발 단위테스트는 느린 작업을 하지않기 위해 지나치게 복잡한 중간 객체와 간접 참조를 낳게 된다. 느린 작업 예로, 데이터베이스를 사용하는 작업, 파일 작업, 또는 전체시스템을 브라우져로 테스트하는 것을 들 수 있다. 아울러 테스트 우선개발 단위테스트는 실로 끔직한 괴물같은 아키텍처인 서비스 오브젝트, 커멘드 패턴 그리고 이보다 더 나쁜 것들이 밀집된 정글을 양산시킨다.
+> 테스트 우선개발 단위테스트는 느린 작업을 하지않기 위해 지나치게 복잡한 중간 객체와 간접 참조를 낳게 된다. 느린 작업 예로, 데이터베이스를 사용하는 작업, 파일 작업, 또는 전체시스템을 브라우져로 테스트하는 것을 들 수 있다. 아울러 테스트 우선개발 단위테스트로 인해 서비스 오브젝트, 커멘드 패턴 그리고 더 나쁜 것들이 모여 정글을 만드는데 이는 실로 끔직한 괴물과도 같은 아키텍처이다.
 
 끔직한 괴물같은 아키텍처에 대해 그는 [Test-induced design damage라는 글에서 Hexagonal design damage이라는 내용으로 좀 더 자세히 얘기한다.](http://david.heinemeierhansson.com/2014/test-induced-design-damage.html) 단지 단위테스트의 빠른 실행을 위해 도입되는 복잡한 [Hexagonal 디자인](http://blog.ploeh.dk/2013/12/03/layers-onions-ports-adapters-its-all-the-same/)은 금지하고, 레일즈의 컨트롤러 같은 Function Root 검증은 단위테스트가 아니라 통합테스트가 더 적합하다라고 말이다.
 
