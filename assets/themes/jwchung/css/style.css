@@ -182,12 +182,17 @@ img {max-width:100%}
 
 /* font sizes ======================================================= */
 
+@import url(http://fonts.googleapis.com/earlyaccess/kopubbatang.css);
+
 body {
     font-size: 16px;
-    line-height: 180%;
-    font-family: 맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo, Microsoft NeoGothic,  Droid sans, sans-serif;
+    line-height: 160%;
 }
 
 blockquote {
     font-size: 120%;
+}
+
+p {
+    font-family: 'KoPub Batang', serif;
 }
