@@ -15,7 +15,7 @@ _이 글에서 별도 설명없이 사용되는 테스트라는 용어는 코드
 
 ### Humble Object
 
-중요한 사실은 비용이 높은 경우이건 또는 테스트가 불가능한 경우이건, 우리는 자동화테스트를 이행할 수 없는 경우에 놓일 수 있다는 것이다. 내가 테스트 초심자였을 때 테스트하기 어려운 코드를 만나면, 어떻게 테스트 비용을 낮춰 자동화할 수 있을지만 고민했었다. 테스트하지 말아야 한다는 생각을 못했다. 그러던 중 만난 [xUnit Patterns 책](https://www.amazon.com/xUnit-Test-Patterns-Refactoring-Code/dp/0131495054)에선 [다음과 같은 사실을 일깨워 주었다.] 목마른 사막에서 만난 오아시스 같았다.(http://xunitpatterns.com/Humble%20Object.html)
+중요한 사실은 비용이 높은 경우이건 또는 테스트가 불가능한 경우이건, 우리는 자동화테스트를 이행할 수 없는 경우에 놓일 수 있다는 것이다. 내가 테스트 초심자였을 때 테스트하기 어려운 코드를 만나면, 어떻게 테스트 비용을 낮춰 자동화할 수 있을지만 고민했었다. 테스트하지 말아야 한다는 생각을 못했다. 그러던 중 만난 [xUnit Patterns 책](https://www.amazon.com/xUnit-Test-Patterns-Refactoring-Code/dp/0131495054)에선 [다음과 같은 사실을 일깨워 주었다.](http://xunitpatterns.com/Humble%20Object.html) 목마른 사막에서 만난 오아시스 같았다.
 
 > 테스트가 어려우면 테스트하지마라. 단, 그 코드는 최대한 겸손(humility)해야 한다.
 
