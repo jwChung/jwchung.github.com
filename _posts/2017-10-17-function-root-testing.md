@@ -78,7 +78,6 @@ public async Task SignUpAsyncWithValidEmailAndPassowordReturnsOkResult()
     Assert.Equals(new Password(password), userStoreSpy.Password);
 
     Assert.Equal(new Email(email), emailConfirmationSpy.Email);
-
 }
 
 private class UserStoreSpy : IUserStore
