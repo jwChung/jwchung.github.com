@@ -11,7 +11,7 @@ tags : [testing, unit-testing, tdd]
 
 ### Structure Inspection
 
-Function Root 내 IO 작업을 Test Double로 고립(isolation)시킨다면 Function Root를 단위테스트(unit testing)로도 검증하는 것이 가능하다. 단위테스트는 다른 의존성으로 부터 고립된 최소 단위 API 테스트를 의미한다. 이때 고립이란, [Jessica Kerr](http://jessitron.com/) 의 표현을 빌리자면, [함수 파라메타를 통해서만 외부세상과 소통할 때 그 함수는 고립되었다고 한다.](http://blog.ploeh.dk/2015/05/07/functional-design-is-intrinsically-testable/)
+Function Root 내 IO 작업을 Test Double로 고립(isolation)시킨다면 Function Root를 단위테스트(unit testing)로도 검증하는 것이 가능하다. 단위테스트는 다른 의존성으로 부터 고립된 최소 단위 API 테스트를 의미한다. 이때 고립이란, [Jessica Kerr](http://jessitron.com/)의 표현을 빌리자면, [함수 파라메타를 통해서만 외부세상과 소통할 때 그 함수는 고립되었다고 한다.](http://blog.ploeh.dk/2015/05/07/functional-design-is-intrinsically-testable/)
 
 > A function has the property of Isolation when the only information it has about the external word is passed into it via arguments.
 
