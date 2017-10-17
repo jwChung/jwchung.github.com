@@ -1,6 +1,7 @@
 /* Override some defaults */
 html, body {
   background-color: #eee;
+  font-family: kopub-lightregular, batang, 바탕, serif;
 }
 
 img {max-width:100%}
