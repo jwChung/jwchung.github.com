@@ -192,5 +192,6 @@ p {
 }
 
 blockquote p {
+    font-size: 15px;
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif    
 }
