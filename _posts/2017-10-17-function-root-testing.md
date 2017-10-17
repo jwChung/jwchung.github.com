@@ -121,7 +121,7 @@ David Heinemeier Hansson(DHH)이 쓴 [TDD is dead](http://david.heinemeierhansso
 
 > Test-first units leads to an overly complex web of intermediary objects and indirection in order to avoid doing anything that's "slow". Like hitting the database. Or file IO. Or going through the browser to test the whole system. It's given birth to some truly horrendous monstrosities of architecture. A dense jungle of service objects, command patterns, and worse.
 
-> 테스트 우선개발 단위테스트는 느린 작업을 하지않기 위해 지나치게 복잡한 중간 객체와 간접 참조를 낳게 된다. 느린 작업 예로, 데이터베이스를 사용하는 작업, 파일 작업, 또는 전체시스템을 브라우져로 테스트하는 것을 들 수 있다. 아울러 테스트 우선개발 단위테스트로 인해 서비스 오브젝트, 커멘드 패턴 그리고 더 나쁜 것들이 모여 정글을 만드는데 이는 실로 끔직한 괴물과도 같은 아키텍처이다.
+> 테스트 우선개발 단위테스트는 느린 작업을 피하기 위해 지나치게 복잡한 중간 객체와 간접 참조를 낳게 된다. 그 예로 데이터베이스를 사용하는 작업, 파일 작업, 또는 전체시스템을 브라우져로 테스트하는 것을 들 수 있다. 아울러 테스트 우선개발 단위테스트로 인해 서비스 오브젝트, 커멘드 패턴 그리고 더 나쁜 것들이 모여 정글을 만드는데 이는 실로 끔직한 괴물과도 같은 아키텍처이다.
 
 끔직한 괴물같은 아키텍처에 대해 그는 [Test-induced design damage라는 글에서 Hexagonal design damage이라는 내용으로 좀 더 자세히 얘기한다.](http://david.heinemeierhansson.com/2014/test-induced-design-damage.html) 단지 단위테스트의 빠른 실행을 위해 도입되는 복잡한 [Hexagonal 디자인](http://blog.ploeh.dk/2013/12/03/layers-onions-ports-adapters-its-all-the-same/)은 금지하고, 레일즈의 컨트롤러 같은 Function Root 검증은 단위테스트가 아니라 통합테스트가 더 적합하다라고 말이다.
 
