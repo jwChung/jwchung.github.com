@@ -15,7 +15,7 @@ Function Root 내 IO 작업을 Test Double로 고립(isolation)시킨다면 Func
 
 > A function has the property of Isolation when the only information it has about the external word is passed into it via arguments.
 
-[이전 글에서 사용한 회원가입 예제](/test-humility#humble-object)를 Web API Endpoint로 바꿔보자. 이를 단위테스트가 가능한 C# 코드로 작성해보면 다음과 같다. 좀 더 복잡한 시나리오를 위해 사용자 이메일을 확인하는 단계를 마지막에 추가했다.(아래 `EmailConfirmation.SendAsync` 메소드 호출 참고) IO 작업 코드를 고립시키기 위해 의존성을 직접 사용하지 않고 생성자를 통해 넘겨받고 있는 것을 확인할 수 있다.
+[이전 글에서 사용한 회원가입 예제](/test-humility#humble-object)를 Function Root로 나타내기 위해 Web API Endpoint로 바꿔보자. 단위테스트가 가능한 C# 코드로 작성해보면 다음과 같다. 좀 더 복잡한 시나리오를 위해 사용자 이메일을 확인하는 단계를 마지막에 추가했다.(아래 `EmailConfirmation.SendAsync` 메소드 호출 참고) IO 작업 코드를 고립시키기 위해 의존성을 직접 사용하지 않고 생성자를 통해 넘겨받고 있는 것을 확인할 수 있다.
 
 ```c#
 public class AccountController : ApiController
