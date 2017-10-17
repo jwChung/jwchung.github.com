@@ -76,31 +76,31 @@ public class Email
 
 ![picture2](../images/how-to-write-more-testable-code/picture2.png)
 
-분리된 D 메소드는 어디에든 위치시켜야 한다. `SignUp` 경우에서 `UserStore.AddAsync` 메소드가 어디에든 위치하여 실행되어야 사용자 정보가 저장되어야 회원가입이 마무리된다. 테스트 하기 어려운 함수가 콜스택 안쪽에 위치할수록 테스트 하기 어려운 코드가 많아진다. 테스트 비용이 증가된다. 따라서 아래 그림처럼 테스트하기 어려운 코드를 가장 바깥쪽에 위치시켜야 테스트 비용을 최소화할 수 있다. 이때 진입점 역할을 하는 A 메소드는 선택할 여지없이 테스트하기 어려운 코드로 분류된다.
+분리된 D 메소드는 어디에든 위치시켜야 한다. `SignUp` 경우에서 `UserStore.AddAsync` 메소드가 어디에든 위치하여 실행되어야 사용자 정보가 저장되어야 회원가입이 마무리된다. 테스트하기 어려운 함수가 콜스택 안쪽에 위치할수록 테스트하기 어려운 코드량이 늘어난다. 테스트 비용이 증가되는 것이다. 따라서 아래 그림처럼 테스트하기 어려운 코드를 가장 바깥쪽에 위치시키면 테스트 비용을 최소화할 수 있다. 이때 진입점 역할을 하는 A 메소드는 선택할 여지없이 테스트하기 어려운 코드로 분류된다.
 
 ![picture3](../images/how-to-write-more-testable-code/picture3.png)
 
 ### Function Root
 
-A 메소드는 특정 기능 수행의 진입점 역할을 한다. 테스트하기 어려운 IO 관련 코드를 담고 있는 경우가 많다. 그래서 그 자신 역시 테스트하기 어려운 형태가 되는 특징이 있다. 이런 메소드 또는 함수를 Function Root 라 하자.
+A 메소드는 특정 기능 수행의 진입점 역할을 한다. 테스트하기 어려운 IO 관련 코드를 담고 있는 경우가 많다. 그래서 그 자신 역시 테스트하기 어려운 형태가 되는 특징이 있다. 이런 메소드 또는 함수를 Function Root라 하자.
 
-[어플리케이션에 필요한 모듈들을 한꺼 번에 구성할 수 있는 장소를 Composition Root 라고 한다.](http://blog.ploeh.dk/2011/07/28/CompositionRoot/) Composition Root 는 프로그램 시작점이지만, Function Root는 기능 시작점이라는 것에 차이점이 있다.
+[어플리케이션에 필요한 모듈들을 한꺼 번에 구성할 수 있는 장소를 Composition Root라고 한다.](http://blog.ploeh.dk/2011/07/28/CompositionRoot/) Composition Root는 프로그램 시작점이지만, Function Root는 기능 시작점이라는 것에 차이점이 있다.
 
-Function Root 가 될 수 있는 위치를 프레임워크 별로 나눠 생각해보면 다음과 같다
+Function Root가 될 수 있는 위치를 프레임워크 별로 나눠 생각해보면 다음과 같다
 
 * UI 프로그램의 이벤트 핸들러
-* Web API 의 액션메소드
-* Azure Functions 또는 AWS Lambda 에서 호출되는 함수
+* Web API의 액션메소드
+* Azure Functions 또는 AWS Lambda에서 호출되는 함수
 * etc 
 
 ### Summary
 
-테스트 비용을 줄이기 위해 테스트하기 쉬운코드를 많이 작성해야 함은 자명한 사실이다. 그러기 위해 테스트하기 어려운 IO 코드를 그렇지 않은 코드로 부터 물리적으로 분리 시키자. 그러면 테스트하기 쉬운 순수함수 코드를 얻을 수 있다. 테스트 하기 어려운 IO 관련 코드는 Function Root 에 위치시키자. Function Root 에서 콜스택 안쪽으로 들어 갈수록 테스트 비용이 증가하기 때문이다.
+테스트 비용을 줄이기 위해 테스트하기 쉬운코드를 많이 작성해야 함은 자명한 사실이다. 그러기 위해 테스트하기 어려운 IO 코드를 그렇지 않은 코드로 부터 물리적으로 분리 시키자. 그러면 테스트하기 쉬운 순수함수 코드를 얻을 수 있다. 테스트 하기 어려운 IO 관련 코드는 Function Root 에 위치시키자. Function Root에서 콜스택 안쪽으로 들어 갈수록 테스트 비용이 증가하기 때문이다.
 
 아래 흐름을 보자. `-->` 표시는 참조한다, 의존한다는 의미다. 중요한 모듈(Domain Model)이 상대적으로 덜 중요한 모듈(Data Access)에 의존하고 있다. [Dependency Inversion Principle(DIP) 위배에 해당한다.](https://en.wikipedia.org/wiki/Dependency_inversion_principle)
 
 > User Interface Module --> Domain Model Module --> Data Access Module
 
-위 경우는 다음과 같이 바뀌어야 한다. Domain Model 이 Data Access 에 의존하는 것이 아니라 그 반대가 되어야 한다. 테스트 비용 입장에서 봐도 Domain Model 이 Data Access 에 의존하면 테스트 어려움 때문에 테스트 비용이 증가하게 된다. Domain Model 은 온전히 IO관련 작업에서 분리되어 순수함수 형태의 코드로 테스트 되는 것이 좋다.
+위 경우는 다음과 같이 바뀌어야 한다. Domain Model이 Data Access에 의존하는 것이 아니라 그 반대가 되어야 한다. 테스트 비용 입장에서 봐도 Domain Model이 Data Access에 의존하면 테스트 어려움 때문에 테스트 비용이 증가하게 된다. Domain Model은 온전히 IO관련 작업에서 분리되어 순수함수 형태의 코드로 테스트 되는 것이 좋다.
 
 > User Interface Module --> Domain Model Module <-- Data Access Module
