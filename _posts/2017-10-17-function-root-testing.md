@@ -5,7 +5,7 @@ tags : [testing, unit-testing, tdd]
 ---
 {% include JB/setup %}
 
-[프로그램에서 각 기능 진입점 역할을 하는 함수 또는 메소드를 Function Root 란 용어로 소개한 바 있다.](/how-to-write-more-testable-code#function-root) Function Root는 대체로 외부세상과 소통하는 IO 작업 담고 있어 테스트하기 힘든 코드로 분류된다. 테스트 비용을 줄이기 위해 테스트 가능한 코드는 Function Root로 부터 분리된다. 따라서 Function Root는 테스트하기 쉬운코드와 그렇지 않은 코드가 만나는 장소를 제공하며, 이들을 어떻게 구성하지가 주된 임무가 된다. Function Root는 순수함수코드와 비순수함수코드 전체를 가로지르는 통합테스트로 검증할 수 있다. 하지만 자동화테스트 비용이 높으면 이를 포기하고 수동테스트로 검증할 수도 있다. 이때 [Function Root는 겸손해야 한다.](/test-humility)
+[프로그램에서 각 기능 진입점 역할을 하는 함수 또는 메소드를 Function Root란 용어로 소개한 바 있다.](/how-to-write-more-testable-code#function-root) Function Root는 대체로 외부세상과 소통하는 IO 작업 담고 있어 테스트하기 힘든 코드로 분류된다. 테스트 비용을 줄이기 위해 테스트 가능한 코드는 Function Root로 부터 분리된다. 따라서 Function Root는 테스트하기 쉬운코드와 그렇지 않은 코드가 만나는 장소를 제공하며, 이들을 어떻게 구성하지가 주된 임무가 된다. Function Root는 순수함수코드와 비순수함수코드 전체를 가로지르는 통합테스트로 검증할 수 있다. 하지만 자동화테스트 비용이 높으면 이를 포기하고 수동테스트로 검증할 수도 있다. 이때 [Function Root는 겸손해야 한다.](/test-humility)
 
 <!-- break -->
 
