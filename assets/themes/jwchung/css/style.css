@@ -183,10 +183,13 @@ img {max-width:100%}
 /* font sizes ======================================================= */
 
 @import url(http://fonts.googleapis.com/earlyaccess/jejumyeongjo.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothiccoding.css);
+@import url(http://fonts.googleapis.com/earlyaccess/nanumgothic.css);
 
 body {
     font-size: 16px;
     line-height: 160%;
+    font-family: 'Nanum Gothic', sans-serif;
 }
 
 blockquote {
@@ -195,4 +198,8 @@ blockquote {
 
 p {
     font-family: 'Jeju Myeongjo', serif;
+}
+
+code {
+    font-family: 'Nanum Gothic Coding', monospace;
 }
