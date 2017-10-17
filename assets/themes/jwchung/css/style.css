@@ -182,12 +182,12 @@ img {max-width:100%}
 
 /* font sizes ======================================================= */
 
-body, li {
+body {
     font-size: 15px;
     line-height: 170%;
 }
 
-p {
+p, li {
     font-family: 'Nanum Myeongjo', sans-serif;
 }
 
