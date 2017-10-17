@@ -198,3 +198,7 @@ p, li {
 blockquote p {
     font-size: 16px;
 }
+
+code {
+    font-family: 'Nanum Gothic Coding', monospace;
+}
