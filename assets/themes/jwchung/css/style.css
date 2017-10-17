@@ -1,7 +1,6 @@
 /* Override some defaults */
 html, body {
   background-color: #eee;
-  font-family: kopub-lightregular, batang, 바탕, serif;
 }
 
 img {max-width:100%}
@@ -186,6 +185,7 @@ img {max-width:100%}
 body {
     font-size: 16px;
     line-height: 180%;
+    font-family: 맑은 고딕, malgun gothic, AppleGothicNeoSD, Apple SD 산돌고딕 Neo, Microsoft NeoGothic,  Droid sans, sans-serif;
 }
 
 blockquote {
