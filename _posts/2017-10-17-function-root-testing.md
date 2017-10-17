@@ -5,7 +5,7 @@ tags : [testing, unit-testing, tdd]
 ---
 {% include JB/setup %}
 
-[프로그램에서 각 기능 진입점 역할을 하는 함수 또는 메소드를 Function Root란 용어로 소개한 바 있다.](/how-to-write-more-testable-code#function-root) Function Root는 대체로 외부세상과 소통하는 IO 작업 담고 있어 테스트하기 힘든 코드로 분류된다. 테스트 비용을 줄이기 위해 테스트 가능한 코드는 Function Root로 부터 분리된다. 따라서 Function Root는 테스트하기 쉬운코드와 그렇지 않은 코드가 만나는 장소를 제공하며, 이들을 어떻게 구성하지가 주된 임무가 된다. Function Root는 순수함수코드와 비순수함수코드 전체를 가로지르는 통합테스트로 검증할 수 있다. 하지만 자동화테스트 비용이 높으면 이를 포기하고 수동테스트로 검증할 수도 있다. 이때 [Function Root는 겸손해야 한다.](/test-humility)
+[프로그램에서 각 기능 진입점 역할을 하는 함수 또는 메소드를 Function Root란 용어로 소개한 바 있다.](/how-to-write-more-testable-code#function-root) Function Root는 대체로 외부세상과 소통하는 IO 작업 담고 있어 테스트하기 힘든 코드로 분류된다. 테스트 비용을 줄이기 위해 테스트 가능한 코드는 Function Root로 부터 분리된다. 따라서 Function Root는 테스트하기 쉬운코드와 그렇지 않은 코드가 만나는 장소를 제공하며, 이들을 어떻게 구성하지가 주된 임무가 된다. Function Root는 순수함수코드와 비순수함수코드 전체를 가로지르는 통합테스트로 검증할 수 있는데, 자동화테스트 비용이 높으면 이를 포기하고 수동테스트로 검증할 수도 있다. 이때 [Function Root는 겸손해야 한다.](/test-humility)
 
 <!-- break -->
 
@@ -111,7 +111,7 @@ private class EmailConfirmationSpy : IEmailConfirmation
 
 ### Reused Abstractions Principle(RAP)
 
-추상화란 본디 공통점을 바탕으로 한다. 공통점이란 최소 두 가지 대상물이 존재해야 발견된다. 만약 단위테스트를 위한 고립 목적으로만 추상화가 사용되었다면 [이는 RAP 위배에 해당한다.](http://www.codemanship.co.uk/parlezuml/blog/?postid=934) RAP 관점에서 올바른 추상화란 구현체가 최소 2개 이상일 때를 말한다. 위 회원가입 구현은 RAP를 위반한 것인가? 그럴 수도 있고 아닐 수도 있다. 사용된 추상화(`IUserStore`, `IEmailConfirmation`)의 구현체가 얼마나 되는지 위 코드만으로는 확인될 수 없기 때문이다. 그럼 RAP를 위배한 코드는 나쁜가? 사용되지 않는 추상화를 도입했다는 것은 분명 비용 부담이다. 그러나 Function Root의 구성(composition)을 Structure Inspection으로 검증할 수 있는 것은 장점이다.
+추상화란 본디 공통점을 바탕으로 한다. 공통점이란 최소 두 가지 대상물이 존재해야 발견된다. 만약 단위테스트를 위한 고립 목적으로만 추상화가 사용되었다면 [이는 RAP 위배에 해당한다.](http://www.codemanship.co.uk/parlezuml/blog/?postid=934) RAP 관점에서 올바른 추상화란 구현체가 최소 2개 이상일 때를 말한다. 위 회원가입 구현은 RAP를 위반한 것인가? 그럴 수도 있고 아닐 수도 있다. 사용된 추상화(`IUserStore`와 `IEmailConfirmation`)의 구현체가 얼마나 되는지 위 코드만으로 확인될 수 없기 때문이다. 그럼 RAP를 위배한 코드는 나쁜가? 사용되지 않는 추상화를 도입했다는 것은 분명 비용 부담이다. 그러나 Function Root의 구성(composition)을 Structure Inspection으로 검증할 수 있는 것은 장점이다.
 
 ### Test-induced design damage
 
@@ -125,7 +125,7 @@ David Heinemeier Hansson(DHH)이 쓴 [TDD is dead](http://david.heinemeierhansso
 
 끔직한 괴물같은 아키텍처에 대해 그는 [Test-induced design damage라는 글에서 Hexagonal design damage이라는 내용으로 좀 더 자세히 얘기한다.](http://david.heinemeierhansson.com/2014/test-induced-design-damage.html) 단지 단위테스트의 빠른 실행을 위해 도입되는 복잡한 [Hexagonal 디자인](http://blog.ploeh.dk/2013/12/03/layers-onions-ports-adapters-its-all-the-same/)은 금지하고, 레일즈의 컨트롤러 같은 Function Root 검증은 단위테스트가 아니라 통합테스트가 더 적합하다라고 말이다.
 
-DHH가 말하는 것 처럼 위 회원가입 코드에서 사용된 `IUserStore`, `IEmailConfirmation` 추상화는 테스트에서 유발된 디자인 손상(Hexagonal design damage)으로 봐야할까? 단위테스트의 빠른 피드백을 위한 것도 하나의 이유가 되지만 이들 추상화는 RAP를 준수하면서 의미있는 인터페이스가 될 수 있다는 게 나의 입장이다. 일례로 `IUserStore` 추상화를 통해 우리는 다양한 데이터 저장소에서를 사용할 수 있다. 이것이 비지니스에 중요한 요구사항이라면 `IUserStore`는 결코 디자인 손상이라 할 수 없는 것이다.
+DHH가 말하는 것 처럼 위 회원가입 코드에서 사용된 `IUserStore`와 `IEmailConfirmation` 추상화는 테스트에서 유발된 디자인 손상(Hexagonal design damage)으로 봐야할까? 단위테스트의 빠른 피드백을 위한 것도 추상화 존재의 이유가 되지만, 이들 추상화가 RAP를 준수하면서 의미있는 인터페이스로 디자인될 수 있다는 게 나의 입장이다. 일례로 `IUserStore` 추상화를 통해 우리는 다양한 데이터 저장소에서를 사용할 수 있다. 이것이 비지니스에 중요한 요구사항이라면 `IUserStore`는 결코 디자인 손상이라 할 수 없는 것이다.
 
 ### Summary
 
