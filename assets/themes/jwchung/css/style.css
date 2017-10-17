@@ -188,7 +188,11 @@ body {
 }
 
 p, li {
-    font-family: 'Nanum Myeongjo', sans-serif;
+    font-family: 'Nanum Myeongjo', serif;
+}
+
+nav li {
+    font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
 blockquote p {
