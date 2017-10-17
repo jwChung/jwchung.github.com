@@ -191,6 +191,10 @@ blockquote {
     font-size: 17px;
 }
 
+h1, h2, h3, h4, h5, h6, h7 {
+    font-family: 'Nanum Gothic', sans-serif;
+}
+
 p {
-    font-family: 'Nanum Myeongjo', sans-serif;
+    font-family: 'Nanum Myeongjo', serif;
 }
