@@ -191,7 +191,7 @@ p, li {
     font-family: 'Nanum Myeongjo', serif;
 }
 
-.navbar li, .tag_box li {
+.navbar li, .tag_box li, .pagination li {
     font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
 }
 
