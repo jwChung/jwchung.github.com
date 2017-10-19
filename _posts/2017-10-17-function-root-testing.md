@@ -127,7 +127,7 @@ David Heinemeier Hansson(DHH)이 쓴 [TDD is dead](http://david.heinemeierhansso
 
 DHH가 말하는 것 처럼 위 회원가입 코드에서 사용된 `IUserStore`와 `IEmailConfirmation` 추상화는 테스트에서 유발된 디자인 손상(Hexagonal design damage)으로 봐야할까? 단위테스트의 빠른 피드백을 위한 것도 추상화 존재의 이유가 되겠지만, 이들 추상화가 RAP를 준수하면서 의미있는 인터페이스로 디자인될 수 있다. 일례로 `IUserStore` 추상화를 통해 우리는 다양한 데이터 저장소에서를 사용할 수 있다. 이것이 비지니스에 중요한 요구사항이라면 `IUserStore`는 결코 디자인 손상이라 할 수 없는 것이다.
 
-단위테스트의 빠른 피드백이 불필요하고 RAP를 위반한다면 아래코드 처럼 추상화를 사용할 필요없이 바로 `UserStore`와 `EmailConfirmation`에 의존할 수 있다. 이 경우 `SignUpAsync` 메소드는 통합테스트로 자동 검증될 수 있다. 만약 통합테스트에 많은 비용이 든다면 이를 포기하고 수동테스트 하자. [이때 Function Root는 겸손해야 한다.](/test-humility)
+단위테스트의 빠른 피드백이 불필요하고 RAP를 위반한다면 아래코드 처럼 추상화를 사용할 필요없이 `UserStore`와 `EmailConfirmation`에 직접 의존할 수 있다. 이 경우 `SignUpAsync` 메소드는 통합테스트로 자동검증할 수 있다. 만약 통합테스트 비용이 많이 들거나 불가능하다면 이를 포기하고 수동테스트 하자. [이때 Function Root는 겸손해야 한다.](/test-humility)
 
 ```c#
 public class AccountController : ApiController
@@ -156,7 +156,4 @@ public class AccountController : ApiController
 
 ### Summary
 
-
- Function Root는 테스트하기 쉬운 코드와 그렇지 않은 IO관련 코드가 구성(composition)되는 곳이다. 이것에 포함되는 IO관련 코드를 고립시키면, Structure Inspection을 통해 전체 코드가 잘 구성되어 돌아가는지 단위테스트로 검증이 가능하다. 고립의 수단으로 도입된 추상화는 빠른 실행을 위해서만 존재하기 보다 추상화 본래 목적에 충실해야 한다. 추상화의 구현체가 하나일 경우는 RAP 위배이며, 추상화 도입의 설득력이 약해진다. 다만 RAP 위배에서 오는 단점보다, 구성이 잘 되었는가 단위테스트하여 얻는 빠른 피드백 장점이 더 큰지는 따져봐야 한다. 이 경우 현재 고려되지 못한 구현체 장래에 도입될 수 있다는 것은 추상화 도입의 긍정적 요소로 평가될 수 있다.
-
-단위테스트의 빠른 피드백을 필요로 하지 않고 RAP를 위반한다면 추상화 없이 통합테스트로 검증할 수도 있다. 이마저도 여의치 않으면 자동화테스트를 포기하고, 겸손한 Function Root를 수동테스트 하자.
+ Function Root는 테스트하기 쉬운 코드와 그렇지 않은 IO관련 코드가 구성(composition)되는 곳이다. 이것에 포함되는 IO관련 코드를 고립시키면, Structure Inspection을 통해 전체 코드가 잘 구성되어 돌아가는지 단위테스트로 검증이 가능하다. 고립의 수단으로 도입된 추상화는 빠른 실행을 위해서만 존재하기 보다 추상화 본래 목적에 충실해야 한다. 추상화의 구현체가 하나일 경우는 RAP 위배이며, 추상화 도입의 설득력이 약해진다. 다만 RAP 위배에서 오는 단점보다, 구성이 잘 되었는가 단위테스트하여 얻는 빠른 피드백 장점이 더 큰지는 따져봐야 한다. 이 경우 현재 고려되지 못한 구현체 장래에 도입될 수 있다는 것은 추상화 도입의 긍정적 요소로 평가될 수 있다. 단위테스트의 빠른 피드백이 불필요하고 RAP를 위반한다면 추상화 없이 통합테스트하거나, 겸손한 Function Root 형태로 수동테스트할 수 있다.
