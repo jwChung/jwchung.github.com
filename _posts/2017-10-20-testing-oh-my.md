@@ -13,7 +13,7 @@ _이 글에서 별도 설명없이 사용되는 테스트라는 용어는 코드
 
 _[나는 TDD(Test-Driven Development)가 디자인 도구라 생각하지 않는다.](https://www.facebook.com/jinwook.chung.167/posts/1890555361179897) 테스트가 디자인을 이끄는 것이 아니라 좋은 디자인이 테스트하기 쉬운 코드를 만든다고 생각한다. 여기서 다뤄지는 내용은 테스트를 먼저 작성하든(TDD), 테스트를 나중에 작성하든 디자인은 그것들보다 먼저 계획된다는 관점에서 기술되었다._
 
-그 후배에게 들려줬던 테스트 방법에 대한 내용을 글로 써봤다. 어떤 코드가 테스트하기 쉬운지 또는 어려운지([Testable Code](/testable-code)), 테스트가 쉬운 코드는 어떻게 작성하는지([How to write more testable code](/how-to-write-more-testable-code)), 테스트 어려운 코드는 어떻게 다뤄야 하는지([Test Humility](/test-humility)), 그리고 테스트하기 쉬운 코드와 어려운 코드가 만나게 되는 지점은 어떤 테스트 방법이 있는지([Function Root Testing](/function-root-testing))에 대한 내용들이다.
+그 후배에게 들려줬던 테스트 방법에 대한 내용을 글로 써봤다. 어떤 코드가 테스트하기 쉬운지 또는 어려운지([Testable Code](/testable-code)), 테스트가 쉬운 코드는 어떻게 작성하는지([How to write more testable code](/how-to-write-more-testable-code)), 테스트가 어려운 코드는 어떻게 다뤄야 하는지([Test Humility](/test-humility)), 그리고 테스트하기 쉬운 코드와 어려운 코드가 만나게 되는 지점은 어떤 테스트 방법이 있는지([Function Root Testing](/function-root-testing))에 대한 내용들이다.
 
 <!-- break -->
 
