@@ -17,7 +17,7 @@ _[나는 TDD(Test-Driven Development)가 디자인 도구라 생각하지 않는
 
 <!-- break -->
 
-글의 순서는 다음과 같다. 작성 편이를 위해 경어는 생략했다. 각 글에는 목차와 같은 네비게이터가 없다. 글 순서가 헷깔린다면 이 페이지로 다시 돌아와 순서를 확인해주시길 바란다.
+글의 순서는 다음과 같다. 작성 편이를 위해 경어는 생략했다.
 
 1. [Testable Code](/testable-code)
 2. [How to write more testable code](/how-to-write-more-testable-code)
