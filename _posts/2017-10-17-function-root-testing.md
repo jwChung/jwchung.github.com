@@ -13,7 +13,7 @@ tags : [testing-oh-my]
 
 Function Root 내 IO 작업을 Test Double로 고립(isolation)시킨다면 Function Root를 단위테스트(unit testing)로도 검증하는 것이 가능하다. 단위테스트는 다른 의존성으로 부터 고립된 최소 단위 API 테스트를 의미한다. 이때 고립이란, [Jessica Kerr](http://jessitron.com/)의 표현을 빌리자면, [함수 파라메타를 통해서만 외부세상과 소통할 때 그 함수는 고립되었다고 한다.](http://blog.ploeh.dk/2015/05/07/functional-design-is-intrinsically-testable/)
 
-> A function has the property of Isolation when the only information it has about the external word is passed into it via arguments.
+> A function has the property of Isolation when the only information it has about the external world is passed into it via arguments.
 
 [이전 글에서 사용한 회원가입 예제](/test-humility#humble-object)를 Function Root로 나타내기 위해 Web API Endpoint로 바꿔보자. 단위테스트가 가능한 C# 코드로 작성해보면 다음과 같다. 좀 더 복잡한 시나리오를 위해 사용자 이메일을 확인하는 단계를 마지막에 추가했다.(아래 `EmailConfirmation.SendAsync` 메소드 호출 참고) IO 작업 코드를 고립시키기 위해 의존성을 직접 사용하지 않고 생성자를 통해 넘겨받고 있는 것을 확인할 수 있다.
 
@@ -115,7 +115,7 @@ private class EmailConfirmationSpy : IEmailConfirmation
 
 ### Test-induced design damage
 
-David Heinemeier Hansson(DHH)이 쓴 [TDD is dead](http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html) 라는 유명한 글이 있다. 이 글에서 그는 TDD가 죽은 주된 이유로 테스트에서 유발된 디자인 손상을 꼽는다. 주제에서 조금 벗어난 얘기를 하자면, DHH는 TDD를 디자인 도구로 생각하는 모양이다. [나는 개인적으로는 TDD를 디자인 도구로 생각하지 않는다.](https://www.facebook.com/jinwook.chung.167/posts/1890555361179897) 오히려 디자인이 좋을수록 TDD에 드는 비용이 절감되고, 잘못된 디자인은 TDD를 망친다고 생각한다.
+David Heinemeier Hansson(DHH)이 쓴 [TDD is dead](http://david.heinemeierhansson.com/2014/tdd-is-dead-long-live-testing.html) 라는 유명한 글이 있다. 이 글에서 그는 TDD가 죽은 주된 이유로 테스트에서 유발된 디자인 손상을 꼽는다. 주제에서 조금 벗어난 얘기를 하자면, DHH는 TDD를 디자인 도구로 생각하는 모양이다. [나는 개인적으로 TDD를 디자인 도구로 생각하지 않는다.](https://www.facebook.com/jinwook.chung.167/posts/1890555361179897) 오히려 디자인이 좋을수록 TDD에 드는 비용이 절감되고, 잘못된 디자인은 TDD를 망친다고 생각한다.
 
 다시 본론으로 돌아가 DHH 글 중 다음 내용을 살펴보자. 
 
@@ -125,7 +125,7 @@ David Heinemeier Hansson(DHH)이 쓴 [TDD is dead](http://david.heinemeierhansso
 
 끔직한 괴물같은 아키텍처에 대해 그는 [Test-induced design damage라는 글에서 Hexagonal design damage이라는 내용으로 좀 더 자세히 얘기한다.](http://david.heinemeierhansson.com/2014/test-induced-design-damage.html) 단지 단위테스트의 빠른 실행을 위해 도입되는 복잡한 [Hexagonal 디자인](http://blog.ploeh.dk/2013/12/03/layers-onions-ports-adapters-its-all-the-same/)은 금지하고, 레일즈의 컨트롤러 같은 Function Root 검증은 단위테스트가 아니라 통합테스트가 더 적합하다라고 말이다.
 
-DHH가 말하는 것 처럼 위 회원가입 코드에서 사용된 `IUserStore`와 `IEmailConfirmation` 추상화는 테스트에서 유발된 디자인 손상(Hexagonal design damage)으로 봐야할까? 단위테스트의 빠른 피드백을 위한 것도 추상화 존재의 이유가 되겠지만, 이들 추상화가 RAP를 준수하면서 의미있는 인터페이스로 디자인될 수 있다. 일례로 `IUserStore` 추상화를 통해 우리는 다양한 데이터 저장소에서를 사용할 수 있다. 이것이 비지니스에 중요한 요구사항이라면 `IUserStore`는 결코 디자인 손상이라 할 수 없는 것이다.
+DHH가 말하는 것 처럼 위 회원가입 코드에서 사용된 `IUserStore`와 `IEmailConfirmation` 추상화는 테스트에서 유발된 디자인 손상(Hexagonal design damage)으로 봐야할까? 단위테스트의 빠른 피드백을 위한 것도 추상화 존재의 이유가 되겠지만, 이들 추상화가 RAP를 준수하면서 의미있는 인터페이스로 디자인될 수 있다. 일례로 `IUserStore` 추상화를 통해 우리는 다양한 데이터 저장소를 사용할 수 있다. 이것이 비지니스에 중요한 요구사항이라면 `IUserStore`는 결코 디자인 손상이라 할 수 없는 것이다.
 
 단위테스트의 빠른 피드백이 불필요하고 RAP를 위반한다면 아래코드 처럼 추상화를 사용할 필요없이 `UserStore`와 `EmailConfirmation`에 직접 의존할 수 있다. 이 경우 `SignUpAsync` 메소드는 DHH 말처럼 단위테스트가 아니라 통합테스트할 수 있다. 만약 통합테스트 비용이 많이 들거나 불가능하다면 이를 포기하고 수동테스트 하자. [이때 Function Root는 겸손해야 한다.](/test-humility)
 
