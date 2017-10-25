@@ -70,7 +70,7 @@ public async Task SignUpAsyncWithValidEmailAndPassowordReturnsOkResult()
     string email = "jwchung@hotmail.com";
     string password = "P@assW0rd";
 
-    // Exercise
+    // Exercise System
     await sut.SignUpAsync(email, password);
 
     // Verify outcome
