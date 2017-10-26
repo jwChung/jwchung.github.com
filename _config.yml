@@ -90,7 +90,7 @@ JB :
     facebook :
       appid : 484385838595460
       num_posts: 5
-      width: 580
+      width: 100%
       colorscheme: light
    
   # Settings for analytics helper
