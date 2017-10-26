@@ -88,6 +88,7 @@ JB :
     intensedebate :
       account : 123abc
     facebook :
+      userid: 100006763543795
       appid : 484385838595460
       num_posts: 5
       width: 100%
