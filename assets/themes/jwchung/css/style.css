@@ -5,6 +5,10 @@ html, body {
 
 img {max-width:100%}
 
+p img {
+    width: 10000px
+}
+
 .navbar {
   margin-bottom: 0;
 }
