@@ -99,7 +99,7 @@ OCP와 SRP를 따를수록 클래스가 가지는 행위 수는 점점 작아지
 coarse-grained와 small-grained 비교를 위해 재미있는 일화를 하나 소개할까 한다. 어느날 [Mark Seemann](http://blog.ploeh.dk/)의 세 살배기 아들이 Duplo 한 주먹을 가져와 그에게 용을 만들어 달라고 한다. 어린 아들 손에 들린 몇 안되는 블럭으로는, 아래 왼쪽 그림처럼 만드는 것이 그가 할 수 있는 최선이었다. 다행히 아들은 만족했다고 한다. 좀 더 작은 Lego 블럭이었다면, 같은 부피(1 duplo = 8 lego)로 그는 오른쪽 그림과 같은 용을 만들었을 것이다.
 
 ![duplo-lego-dragon](../images/duplo-lego-dragon.jpg)
-_Mark Seemann이 위 그림의 credits을 가진다. [Encapsulation and SOLID]((https://app.pluralsight.com/library/courses/encapsulation-solid/table-of-contents))라는 그의 온라인 강좌에서 오리지날 그림이 소개되었다. [Anastasios Piotopoulos가 오리지날 그림과 같은 위 그림을 제작했다.](https://www.linkedin.com/pulse/how-unit-bias-can-prevent-us-from-designing-better-piotopoulos)_
+_Mark Seemann이 위 그림의 credits을 가진다. [Encapsulation and SOLID라는 그의 온라인 강좌](https://app.pluralsight.com/library/courses/encapsulation-solid/table-of-contents)에서 오리지날 그림이 소개되었다. [Anastasios Piotopoulos가 오리지날 그림과 같은 위 그림을 제작했다.](https://www.linkedin.com/pulse/how-unit-bias-can-prevent-us-from-designing-better-piotopoulos)_
 
 블럭의 부피를 코드량으로 빗대어 보면, 그림 왼쪽이 coarse-grained 오른쪽이 small-grained이다. small-grained 접근은 동일한 부피를 사용함에도 불구하고, coarse-grained보다 더 정교한 표현이 가능하다. 필요한 행위만 선택적으로 사용한 까닭이다. 반면 coarse-grained 접근은 필요하지 않은 행위까지 덩어리로 사용해 정교한 표현이 어려운 것이다.
 
