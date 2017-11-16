@@ -1,109 +1,166 @@
 ---
 layout: post
-title: Sometimes tell, sometimes ask
-tags : [oop]
+title: DI vs DIP vs IoC
+tags : [dependency-injection, solid]
 ---
 {% include JB/setup %}
 
-필요한 데이터를 묻기보다, 하고 싶은 걸 말해라는 Tell, Don't Ask(이하 TDA)라는 원칙이 있다. 필요한 데이터 요청없이 행위를 실행하려면, 행위와 데이터가 함께 있어야 한다. Oriented Object Programming(OOP)은 데이터(필드)와 관련 행위(메소드)를 클래스로 한데 묶는 것이 특징인데, TDA 원칙은 이를 잘 살려주는 도구이다.
+Dependency Injection(DI), Inversion of Control(IoC) 그리고 Dependency Inversion Principle(DIP)은 비슷한 듯하면서 다르다. 많은 사람이 혼란해 한다. 특별히 IoC는 좀 넓은 의미이고 DI는 IoC의 하위개념으로 좀 더 좁은 의미로 해석하는 것이다. IoC라는 전체집합에 DI는 부분집합이라고 생각하는 글을 많이 본다. 이렇게 생각하는 이유에 대해 내 나름데로 찾은 답은 [Martin Folwer의 글이다.](https://martinfowler.com/articles/injection.html) 혼란을 일으키는 주된 내용을 인용하면 다음과 같다.
 
-아래 `UserAccount` 클래스는 `email`과 `password` 데이터로 표현되며, 데이터베이스에 사용자 계정을 저장하기 위해 `Save`라는 행위를 가지고 있다. 데이터를 표현하는 필드, 행위를 의미하는 메소드가 동일 클래스에 위치해서 필요한 데이터를 따로 요청할 필요가 없다. TDA 원칙을 따른 것이다.
+> The approach that these containers use is to ensure that any user of a plugin follows some convention that allows a separate assembler module to inject the implementation into the lister. As a result I think we need a more specific name for this pattern. Inversion of Control is too generic a term, and thus people find it confusing. As a result with a lot of discussion with various IoC advocates we settled on the name Dependency Injection.
 
-TDA 원칙이 OOP의 특징을 살려주는 도구이지만, 다른 시각에서 보면 문제가 있다.
+> 컨테이너를 사용하는 접근법은 어떤 플러그인 사용자든지 별도의 어셈블리 모듈에서 의존성(본문에서 `MovieFinder`를 말함)을 의존자(`MovieLister`)에게 주입하는 규칙을 따르도록 한다. 결과적으로 IoC는 너무 일반적인 용어라서 이런 패턴에 대한 좀 더 구체적인 이름이 필요하다고 생각한다. IoC를 사용하는 많은 사람과 토론을 거친 후, Dependency Injection이란 이름을 정했다.
+
+IoC는 일반적인 의미라서 좀 더 구체적인 용어가 필요해 DI라는 용어가 생겼다고 이해된다. IoC는 좀 넓은 의미이고 DI는 IoC의 하위개념으로 좀 더 좁은 의미로 해석할 수 있다.  이런 이해를 바탕으로 DI가 IoC의 한 종류라 많이들 얘기한다. 하지만 나는 이 주장에 반대한다. **DI는 IoC의 부분집합이라고 생각하지 않고 이 둘은 별개라고 생각한다.** 그래서 난 Martin Folwer의 내용 또는 표현에 문제가 있다고 생각한다. 그가 DI는 IoC의 부분집합이다고 생각한다면 내용의 오류를 지적하고 싶고, 그렇지 않고 이 둘을 별개라고 생각한다면 오해를 불러 일으키는 표현의 문제점을 지적하고 싶다. 왜 그런지 내용을 살펴보자.
 
 <!-- break -->
 
+### Dependency Injection
+
+아래코드를 보면, 피자가게(`PizzaStore`)에서 피자(`Pizza`)를 팔고 있다. 피자가게 예제는 단순해서 실제 프로젝트에서 사용되는 코드와 동 떨어져 있지만, 개념을 집중해서 설명하는 데는 효과적이라 생각한다. 
+
+아래 `PizzaStore` 인스턴스는 정해진 개수의 `Pizza` 인스턴스를 직접 가지고 있다. 만약 3개롤 초과하는 피자를 팔고 싶다면 [`PizzaStore` 클래스를 수정해야 한다. OCP를 위배이다.](https://en.wikipedia.org/wiki/Open/closed_principle)
+
 ```c#
-// C#으로 작성된 코드이며, ...는 코드가 생략되었다는 뜻이다.
+// C# 코드로 작성되었다.
+// "..." 는 코드가 생략되었다 의미다.
 
-public class UserAcccount
+public class PizzaStore
 {
-    private string email;
-    private string password;
+    private readonly Pizza[] pizzas =
+        new Pizza[] { new Pizza(), new Pizza(), new Pizza() };
 
-    // 필드 초기화
-    ...
-
-    public void Save()
+    public void Sell(int count)
     {
-        // 데이터베이스에 저장
+        // pizzas 필드를 사용해 피자를 판매한다.
+
         ...
     }
 }
 ```
 
-### Open/Closed Principle(OCP)
-
-사용자 계정을 데이터베이스에 저장하는 대신, 파일로 저장하라는 수정 요청이 들어왔다. 이것을 구현하려면 `Save` 메소드 내부 코드를 수정해야만 한다. [확장에는 열려있어야 하고, 변경에는 닫혀 있어야 한다는 OCP를 위배한 것이다.](http://blog.ploeh.dk/2012/01/03/SOLIDisAppend-only/)
-
-그럼 아래 코드를 보자. `DbStore` 클래스가 `Save` 메소드를 가지고 있고, 데이터베이스에 저장할 데이터를 `UserAcccount` 인스턴스에 묻고 있다. 하고 싶은 걸 말하지 않고, 필요한 데이터를 묻는 경우다. 즉 TDA 원칙을 따르지 않는다. 그러나, 사용자 계정을 파일로 저장할 새로운 `FileStore` 클래스를 작성할 수 있게 한다. 코드를 수정하거나 삭제하는 일 없이, 파일로 저장하는 새로운 기능을 추가할 수 있게 된 것이다. OCP를 위배하지 않은 덕이다.
+이 문제는 `PizzaStore` 클래스가 `Pizza` 배열을 직접참조하고 있기 때문에 발생하고 있다. `Pizza` 배열 의존성을 인수(argument) 넘겨 받으면 문제가 해결된다. 이제 `PizzaStore` 생성할 때 필요한 만큼 `Pizza`를 넘겨주면 된다. **인수를 취하는 것이 DI의 개념의 대부분이다**고 해도 과언이 아니다.
 
 ```c#
-public class UserAcccount
+public class PizzaStore
 {
-    // 속성 초기화
-    ...
+    private readonly Pizza[] pizzas;
 
-    public string Email { get; }
+    public PizzaStore(Pizza[] pizzas)
+    {
+        this.pizzas = pizzas;
+    }
 
-    public string Password { get; }
+    public void Sell(int count)
+    {
+        // pizzas 필드를 사용해 피자를 판매한다.
+
+        ...
+    }
+}
+``` 
+
+ [Rúnar Bjarnason는 한 세미나에서 아래와 같이 DI는 인수를 취하는 것을 허세적으로 표현한 것이고 말했다.](https://www.youtube.com/watch?v=ZasXwtTRkio)
+
+> Dependency Injection is really just a pretentious way to say 'taking an argument'.
+
+[DI 주제로 500 페이지 넘게 책을 쓴 Mark Seemann](https://www.amazon.com/Dependency-Injection-NET-Mark-Seemann/dp/1935182501)은 적어도 이 표현에 반대할 거라 예상하지만, [그는  Rúnar Bjarnason 표현이 틀렸다기보다 추가될 내용이 있다고 했다.](http://blog.ploeh.dk/2017/01/27/dependency-injection-is-passing-an-argument/) Mark Seemann의 추가 내용을 설명하기 위해 아래 `IPizzaStore`라는 인터페이스를 만들자. 위에서 언급된 `PizzaStore` 클래스가 이 인터페이스를 구현한다고 해보자. `Pizza` 배열이 인수로 넘겨지지만, `IPizzaStore` 인터페이스(추상화)를 전혀 해치지 않고 있다는 것에 주목하자. 그는 이 점을 강조했다. **추상화를 해치지 않고 의존성을 인수로 넘겨주는 방법이 DI**라고 말이다. 이것이 DI 개념의 전부이다. 여기에 DIP 또는 IoC를 넣어 DI 개념을 혼란시킬 필요가 없다.
+
+```c#
+public interface IPizzaStore
+{
+    void Sell(int count);
+}
+```
+
+### Dedendency Inversion Principle
+
+피자가게에서 한 종류의 피자(`Pizza`)가 아니라 여러 종류의 피자를 팔고 싶어한다. 위에서 살펴 본 코드로는 불가능하다. 문제 원인은 피자가게(`PizzaStore`)가 피자(`Pizza`)에 의존하고 있기 때문이다. 아래 그림과 같이 더 중요한 `PizzaStore` 클래스가 덜 중요한 `Pizza` 클래스에 의존한 것이다. DIP 위배이다.
+
+![DIP](../images/DIP-violation.png)
+
+덜 중요한 `Pizza` 클래스가 더 중요한 `PizzaStore`에 의존하게 만들어야 한다. 아래 그림과 같이 `IPizza` 인터페이스(추상화)를 도입해 DIP 위배 문제를 해결해보자. 위 그림에서 `PizzaStore` 클래스가 `Pizza` 클래스를 의존(참조, 실선으로 표현)하는 것에서, `Pizza` 클래스가 `IPizza` 인터페이스를 의존(인터페이스 구현, 점선으로 표현)하는 것으로 **화살표 방향이 뒤집힌 것(역전)**을 확인할 수 있다. DIP 원칙을 지킨 것이다.
+
+![DIP](../images/DIP-resolved.png)
+
+아래 DIP 원칙을 나타내는 문장 둘을 보며 DIP를 다시 한번 정리하고 넘어가는 것이 좋겠다. 더 중요한 모듈이 덜 중요한 모듈에 의존하면 안된다. 이 관계를 뒤집기 위해 추상화가 필요하다. 아울러 추상화가 실체에 의존해서는 안된다.
+
+> A. High-level modules should not depend on low-level modules. Both should depend on abstractions.  
+B. Abstractions should not depend on details. Details should depend on abstractions.
+
+DI는 으레 DIP와 연결되었다고 생각한다. 하지만 이 둘은 별개다. DI를 사용하면서 DIP 개념이 필요하지 않는 경우도 많다란 뜻이다. 예를들어 아래 `CachedUserStore` 클래스를 보자. 사용자를 `userId`를 통해 매번 조회하는 것이 아니라 일정 기간(`duration`) 동안 캐쉬하는 기능을 제공하는 `IUserStore`의 [Decorator](http://www.dofactory.com/net/decorator-design-pattern) 역할을 한다. 이때 `duration` 값은 DI를 통해 주입되지만, DIP 개념이 필요한 것은 아니다. 
+
+```c#
+public interface IUserStore
+{
+    User Find(string userId);
 }
 
-public class DbStore
+public class CachedUserStore : IUserStore
 {
-    public void Save(UserAccount account)
-    {
-        string email = acccount.Email; // TDA 위배
-        string password = account.Password;
+    ...
 
-        // 데이터베이스에 저장
+    public CachedUserStore(IUserStore innerStore, TimeSpan duration)
+    {
+        ...
+    }
+
+    public User Find(string userId)
+    {
         ...
     }
 }
 ```
 
-### Single Responsibility Principle(SRP)
+### Inversion of Control
 
-이제 TDA 원칙를 지키면서, 사용자 이메일 주소로 메일을 전송하는 기능을 추가해보자. 이를 구현하면 아래 코드와 같다. 추가된 `SendEmail` 메소드는 앞서 언급한 OCP 위배 문제를 가진다. 또한 `UserAcccount` 클래스는 계정 저장과 메일 전송이라는 두 가지 책임을 가지게 된다. 두 책임 중 하나만 변경되더라도, 코드 수정이 필요하다. 클래스를 수정하는 이유는 단 하나여야 한다는 SRP를 위배한 것이다.
+IoC 개념은 프레임워크와 라이브라리 사용 차이에서 설명될 수 있다. 라이브러리 사용은 필요한 것을 직접 가져와서 쓰는 반면, 프레임워크에서는 규칙에 따라 구성요소를 등록해 놓으면 프레임워크에서 이 구성요소를 가져다 쓰게 된다. 이 관계에서 제어가 역전되었다고 표현한다. [같은 맥락에서 템플릿메소드 패턴 역시 IoC를 설명하기에 좋은 예다.](http://www.dofactory.com/net/template-method-design-pattern) IoC를 좀 더 외우기 쉽게 Hollywood Principle이라고 한다. "내가 전에도 얘기했잖아, 나한테 먼저 연락하지마, 필요하면 내가 연락할께"라고 말이다.
+
+피자가게 문제로 돌아가보자. DI와 DIP 개념을 사용하여 피자가게에서는 아래코드에서 보듯 원하는 종류의 피자를 원하는 개수만큼 만들어 팔 수 있게 되었다.
 
 ```c#
-public class UserAcccount
+public static void Main()
 {
-    private string email;
-    private string password;
+    var pizzaStore = new PizzaStore(
+        new IPizza[]{
+            new CheezePizza(),
+            new CheezePizza(),
+            ...
+            new ShrimpPizza(),
+            new BulgogiPizza(),
+            ...
+        });
 
     ...
-
-    public void Save()
-    {
-        ...
-    }
-
-    public void SendEmail()
-    {
-        ...
-    }
 }
 ```
 
-SRP를 지키는 방법은 간단하다. 위 OCP 경우에서 `FileStore` 클래스를 새로 만든 것처럼, 메일 전송을 위한 새 `EmailService` 클래스를 만들면 된다. 이 클래스는 메일 전송을 위해 `UserAcccount` 인스턴스에 사용자 이메일 데이터를 묻게될 것이다. TDA 원칙은 포기했지만, SRP는 지키게 되었다.
+여기서 피자의 종류가 아주 많다면 어떻게 될까? 손으로 많은 종류의 피자를 나열해서 생성하는 것은 많은 비용을 요구한다. 이 번거로운 작업을 프레임워크가 해주면 좋겠다. IoC 개념이 담긴 IoC 컨테이너가 이 역할을 해줄 수 있다. 아래 코드에서는 특정 모듈(어셈블리)에 속하면서 `IPizza` 인터페이서를 구현하는 모든 타입을 IoC 컨테이너로 등록하고 사용하는 것을 보여주고 있다. 특정 피자 클래스 생성자는 사용자에 의해 직접호출되는 것이 아니라, IoC 컨테이너에 의해 호출된다. 인스턴스 생성방향이 역전되어, 헐리우드 배우와 같은 모습이 된 것이다.
 
-### Why OCP and SRP matter?
+```c#
+public static void Main()
+{
+    Type[] pizzaTypes = Assembly.GetEntryAssembly()
+        .GetExportedTypes()
+        .Where(typeof(IDisposable).IsAssignableFrom);
 
-특정 라이브러리를 사용하면서, 필요한 메소드가 없는데 해당 클래스가 관련된 데이터를 노출하지 않아 당혹스러운 경험을 한적이 있는가? 우리는 메소드가 추가되길 기다리거나, Private 접근자로 숨겨진 데이터를 리플렉션(reflection)으로 읽어야만 했다. TDA 원칙을 지키는게 능사가 아닌 것이다. 데이터를 공개하여 행위를 확장할 수 있도록 OCP를 강조하는 것이 필요하다. [컨트롤 가능한 코드 영역(non-published interfaces)](https://martinfowler.com/bliki/PublishedInterface.html)에서 OCP를 지키지 않아 발생되는 비용은 상대적으로 크지 않다. 반면 많은 사람들이 사용하는 라이브러리를 배포한 경우(published interfaces)는 비용이 많이 든다. 사용자 계정을 파일로 저장하기 위해 `Save` 메소드를 수정하거나 메일을 전송하기 위해 `SendEmail` 메소드를 추가했다면, 빌드 후 새로운 버전의 라이브러리를 배포해야 한다. Breaking change라도 생긴다면 비용은 더욱 증가하게 된다.
+    var builder = new IoCContainerBuilder();
+    buildr.RegisterTypes(pizzaTypes);
 
-TDA 원칙을 따르다면 행위는 관련 데이터가 속한 클래스에 추가되어야 한다. 행위가 하나, 둘씩 추가되면 클래가 비대해지며 SRP를 위배할 가능성이 점차 높아간다. 특정 데이터에 관련된 모든 행위는 그 데이터가 속한 클래스에서 처리되길 희망한다. 그러나 그 클래스가 [모든 행위를 가지는 God object가 되어선 곤란하다.](https://en.wikipedia.org/wiki/God_object)
+    IoCContainer container = builder.Build();
 
-OCP와 SRP를 따를수록 클래스가 가지는 행위 수는 점점 작아지는 반면, 클래스 수는 점점 많아지는 경향이 있다. 많은 행위를 가지는 클래스를 사용하기 보다(coarse-grained), 많은 클래스에서 필요한 행위를 골라 쓰는 방향(small-grained)으로 간다. 클래스 수가 많으면 선택하는데 어려움이 있다는 의견이 있는데, 네임스페이스와 Nested 클래스가 좋은 해결 도구가 된다. 관련 있는 클래스끼리 묶은 후 의미 이름을 부여할 수 있다.
+    IPizza[] allKindOfPizza = container.Resolve<IPizza[]>();
 
-coarse-grained와 small-grained 비교를 위해 재미있는 일화를 하나 소개할까 한다. 어느날 [Mark Seemann](http://blog.ploeh.dk/)의 세 살배기 아들이 Duplo 한 주먹을 가져와 그에게 용을 만들어 달라고 한다. 어린 아들 손에 들린 몇 안되는 블럭으로는, 아래 왼쪽 그림처럼 만드는 것이 그가 할 수 있는 최선이었다. 다행히 아들은 만족했다고 한다. 좀 더 작은 Lego 블럭이었다면, 같은 부피(1 duplo = 8 lego)로 그는 오른쪽 그림과 같은 용을 만들었을 것이다.
+    var pizzaStore = new PizzaStore(allKindOfPizza);
 
-![duplo-lego-dragon](../images/duplo-lego-dragon.jpg)
+    ...
+}
+```
 
-_Mark Seemann이 위 그림의 credits을 가진다. [Encapsulation and SOLID라는 그의 온라인 강좌](https://app.pluralsight.com/library/courses/encapsulation-solid/table-of-contents)에서 오리지날 그림이 소개되었다. [Anastasios Piotopoulos가 오리지날 그림과 같은 위 그림을 제작했다.](https://www.linkedin.com/pulse/how-unit-bias-can-prevent-us-from-designing-better-piotopoulos)_
+### Pure DI
 
-블럭의 부피를 코드량으로 빗대어 보면, 그림 왼쪽이 coarse-grained 오른쪽이 small-grained이다. small-grained 접근은 동일한 부피를 사용함에도 불구하고, coarse-grained보다 더 정교한 표현이 가능하다. 필요한 행위만 선택적으로 사용한 까닭이다. 반면 coarse-grained 접근은 필요하지 않은 행위까지 덩어리로 사용해 정교한 표현이 어려운 것이다.
+DI 개념이 DIP의 개념과 별개이 듯, IoC 개념도 그렇다. DI를 사용한다고 IoC 컨테이너가 무조건 필요한 것이 아니다. 얼마든지 피자가게 생성자에 피자를 직접 나열하여 인스턴스를 생성할 수 있다. 이것이 DI의 개념에 반하는 것이 아니다. 별개의 문제이다.
 
-### Conclusion
+Mark Seemann은 IoC 컨테이너를 사용하지 않는 DI에 대해 Pure DI라는 용어를 사용했다. 그의 책 "Dependency Injection in .NET" 에서는 이 용어 대신 Poor Man's DI라는 용어로 기술되어 있다. [하미만 Poor Man라는 뜻에서 오는 부정적인 의미 때문에  IoC 컨테이너를 사용하지 않는 DI의 강점이 퇴색되는 것이 안타까웠던 모양이다.](http://blog.ploeh.dk/2014/06/10/pure-di/) 책에서 사용한 용어를 바꾸면 혼란이 있음에도 불구하고 그는 Poor Man's DI 대신 Pure DI라고 불러주길 희망하고 있다.
 
-TDA 원칙은 데이터와 관련 행위를 클래스로 묶는 OOP 특징을 잘 살려준다. 하지만 TDA 원칙을 따를수록, OCP와 SRP를 지키지 못한다. 마침내 God object를 만나게 될지도 모른다. TDA 원칙의 장점만 보지말자. 필요한 데이터를 묻기도 하고, 때로는 하고 싶은 걸 말하기도 해야한다. 이 두 갈림길에 서게 된다면 어느 길이 지름길인지 고민해야 한다.
+Pure Man DI의 강점이 뭐길래 용어를 바꾸는 모험을 단행한 것일까? [When to use a DI Container라는 글에서 그의 생각을 엿볼 수 있다.](http://blog.ploeh.dk/2012/11/06/WhentouseaDIContainer/)

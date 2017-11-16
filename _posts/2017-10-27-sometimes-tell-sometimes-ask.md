@@ -1,7 +1,7 @@
 ---
 layout: post
 title: Sometimes tell, sometimes ask
-tags : [oop]
+tags : [oop, solid]
 ---
 {% include JB/setup %}
 
