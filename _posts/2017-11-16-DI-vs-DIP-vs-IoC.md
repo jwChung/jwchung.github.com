@@ -5,13 +5,15 @@ tags : [dependency-injection, solid]
 ---
 {% include JB/setup %}
 
-Dependency Injection(DI), Inversion of Control(IoC) 그리고 Dependency Inversion Principle(DIP)은 비슷한 듯하면서 다르다. 많은 사람이 혼란해 한다. 특별히 IoC는 좀 넓은 의미이고 DI는 IoC의 하위개념으로 좀 더 좁은 의미로 해석하는 것이다. IoC라는 전체집합에 DI는 부분집합이라고 생각하는 글을 많이 본다. 이렇게 생각하는 이유에 대해 내 나름데로 찾은 답은 [Martin Folwer의 글이다.](https://martinfowler.com/articles/injection.html) 혼란을 일으키는 주된 내용을 인용하면 다음과 같다.
+Dependency Injection(DI), Inversion of Control(IoC) 그리고 Dependency Inversion Principle(DIP)은 비슷한 듯하면서 다르다. 많이 혼란스럽다. 이 글에서는 각각의 개념을 설명하고 그 차이를 알아보려 한다.
+
+본론에 들어가기에 앞서 먼저 집고 넘어 가고 싶은 내용이 있다. [Martin Folwer의 글에서 DI를 사용한다는 것은 IoC 사용을 포함하는 것처럼 기술되어 있다.](https://martinfowler.com/articles/injection.html) 이와 관련한 내용을 인용하면 다음과 같다.
 
 > The approach that these containers use is to ensure that any user of a plugin follows some convention that allows a separate assembler module to inject the implementation into the lister. As a result I think we need a more specific name for this pattern. Inversion of Control is too generic a term, and thus people find it confusing. As a result with a lot of discussion with various IoC advocates we settled on the name Dependency Injection.
 
 > 컨테이너를 사용하는 접근법은 어떤 플러그인 사용자든지 별도의 어셈블리 모듈에서 의존성(본문에서 `MovieFinder`를 말함)을 의존자(`MovieLister`)에게 주입하는 규칙을 따르도록 한다. 결과적으로 IoC는 너무 일반적인 용어라서 이런 패턴에 대한 좀 더 구체적인 이름이 필요하다고 생각한다. IoC를 사용하는 많은 사람과 토론을 거친 후, Dependency Injection이란 이름을 정했다.
 
-IoC는 일반적인 의미라서 좀 더 구체적인 용어가 필요해 DI라는 용어가 생겼다고 이해된다. IoC는 좀 넓은 의미이고 DI는 IoC의 하위개념으로 좀 더 좁은 의미로 해석할 수 있다.  이런 이해를 바탕으로 DI가 IoC의 한 종류라 많이들 얘기한다. 하지만 나는 이 주장에 반대한다. **DI는 IoC의 부분집합이라고 생각하지 않고 이 둘은 별개라고 생각한다.** 그래서 난 Martin Folwer의 내용 또는 표현에 문제가 있다고 생각한다. 그가 DI는 IoC의 부분집합이다고 생각한다면 내용의 오류를 지적하고 싶고, 그렇지 않고 이 둘을 별개라고 생각한다면 오해를 불러 일으키는 표현의 문제점을 지적하고 싶다. 왜 그런지 내용을 살펴보자.
+이 글은 통해 DI를 IoC의 특별한 형태라고 말하고 있다. 하지만 나는 여기에 반감을 가진다. IoC 없이도 DI는 의미가 있으며, 이 둘은 별개라고 생각하는 것이 적절하다고 생각한다. 왜 그런지 개념을 하나씩 살펴보자.
 
 <!-- break -->
 
@@ -64,7 +66,7 @@ public class PizzaStore
 
 > Dependency Injection is really just a pretentious way to say 'taking an argument'.
 
-[DI 주제로 500 페이지 넘게 책을 쓴 Mark Seemann](https://www.amazon.com/Dependency-Injection-NET-Mark-Seemann/dp/1935182501)은 적어도 이 표현에 반대할 거라 예상하지만, [그는  Rúnar Bjarnason 표현이 틀렸다기보다 추가될 내용이 있다고 했다.](http://blog.ploeh.dk/2017/01/27/dependency-injection-is-passing-an-argument/) Mark Seemann의 추가 내용을 설명하기 위해 아래 `IPizzaStore`라는 인터페이스를 만들자. 위에서 언급된 `PizzaStore` 클래스가 이 인터페이스를 구현한다고 해보자. `Pizza` 배열이 인수로 넘겨지지만, `IPizzaStore` 인터페이스(추상화)를 전혀 해치지 않고 있다는 것에 주목하자. 그는 이 점을 강조했다. **추상화를 해치지 않고 의존성을 인수로 넘겨주는 방법이 DI**라고 말이다. 이것이 DI 개념의 전부이다. 여기에 DIP 또는 IoC를 넣어 DI 개념을 혼란시킬 필요가 없다.
+[DI 주제로 500 페이지 넘게 책을 쓴 Mark Seemann](https://www.amazon.com/Dependency-Injection-NET-Mark-Seemann/dp/1935182501)은 적어도 이 표현에 반대할 거라 예상하지만, [그는  Rúnar Bjarnason 표현이 틀렸다기보다 추가될 내용이 있다고 했다.](http://blog.ploeh.dk/2017/01/27/dependency-injection-is-passing-an-argument/) Mark Seemann의 추가 내용을 설명하기 위해 아래 `IPizzaStore`라는 인터페이스를 만들자. 위에서 언급된 `PizzaStore` 클래스가 이 인터페이스를 구현한다고 해보자. `Pizza` 배열이 인수로 넘겨지지만, `IPizzaStore` 인터페이스(추상화)를 전혀 해치지 않고 있다는 것에 주목하자. 그는 이 점을 강조했다. **추상화를 해치지 않고 의존성을 인수로 넘겨주는 방법이 DI**라고 말이다. 이것이 DI 개념의 전부이다. 여기에 DIP 또는 IoC 개념을 넣어 DI 개념을 혼란시킬 필요가 없다.
 
 ```c#
 public interface IPizzaStore
@@ -83,12 +85,12 @@ public interface IPizzaStore
 
 ![DIP](../images/DIP-resolved.png)
 
-아래 DIP 원칙을 나타내는 문장 둘을 보며 DIP를 다시 한번 정리하고 넘어가는 것이 좋겠다. 더 중요한 모듈이 덜 중요한 모듈에 의존하면 안된다. 이 관계를 뒤집기 위해 추상화가 필요하다. 아울러 추상화가 실체에 의존해서는 안된다.
+아래 DIP 원칙을 나타내는 문장 둘을 보며 DIP를 정리하고 넘어가는 것이 좋겠다. 더 중요한 모듈이 덜 중요한 모듈에 의존하면 안된다. 이 관계를 뒤집기 위해 추상화가 필요하다. 아울러 추상화가 실체에 의존해서는 안된다.
 
 > A. High-level modules should not depend on low-level modules. Both should depend on abstractions.  
 B. Abstractions should not depend on details. Details should depend on abstractions.
 
-DI는 으레 DIP와 연결되었다고 생각한다. 하지만 이 둘은 별개다. DI를 사용하면서 DIP 개념이 필요하지 않는 경우도 많다란 뜻이다. 예를들어 아래 `CachedUserStore` 클래스를 보자. 사용자를 `userId`를 통해 매번 조회하는 것이 아니라 일정 기간(`duration`) 동안 캐쉬하는 기능을 제공하는 `IUserStore`의 [Decorator](http://www.dofactory.com/net/decorator-design-pattern) 역할을 한다. 이때 `duration` 값은 DI를 통해 주입되지만, DIP 개념이 필요한 것은 아니다. 
+DI는 으레 DIP 개념을 사용한다고 생각한다. 하지만 이 둘은 별개다. DI를 사용하면서 DIP 개념이 필요하지 않는 경우도 많다란 뜻이다. 예를들어 아래 `CachedUserStore` 클래스를 보자. 사용자를 `userId`를 통해 매번 조회하는 것이 아니라 일정 기간(`duration`) 동안 캐쉬하는 기능을 제공하는 `IUserStore`의 [Decorator](http://www.dofactory.com/net/decorator-design-pattern) 역할을 한다. 이때 `duration` 값은 DI를 통해 주입되지만, DIP 개념이 필요한 것은 아니다. 
 
 ```c#
 public interface IUserStore
