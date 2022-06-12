@@ -38,7 +38,7 @@ public async Task SignUp(string email, string password)
 }
 ```
 
-테스트 가능한 코드를 최대한 `SingUp`에서 분리시켰다. [이전 글에서 테스트 가능한 코드를 작성하려면, 테스트하기 어려운 코드와 쉬운 코드 분리하자고 한 것과 연결되는 내용이다.](/how-to-write-more-testable-code#테스트하기-어려운-코드와-쉬운-코드-분리) [`Email` 클래스](/how-to-write-more-testable-code#테스트하기-어려운-코드와-쉬운-코드-분리)와 같은 방법(Primitive Obsession)으로 구현된 `Password` 클래스를 사용해보자. 이 두 클래스를 적용해 아래와 같은 코드를 작성할 수 있다. `SignUp` 자체를 테스트할 순 없지만, `Email` 클래스와 `Password` 클래스는 이와 분리시켜 테스트할 수 있다. `SignUp` 메소드를 겸손하게 만든 결과다.
+테스트 가능한 코드를 최대한 `SignUp`에서 분리시켰다. [이전 글에서 테스트 가능한 코드를 작성하려면, 테스트하기 어려운 코드와 쉬운 코드 분리하자고 한 것과 연결되는 내용이다.](/how-to-write-more-testable-code#테스트하기-어려운-코드와-쉬운-코드-분리) [`Email` 클래스](/how-to-write-more-testable-code#테스트하기-어려운-코드와-쉬운-코드-분리)와 같은 방법(Primitive Obsession)으로 구현된 `Password` 클래스를 사용해보자. 이 두 클래스를 적용해 아래와 같은 코드를 작성할 수 있다. `SignUp` 자체를 테스트할 순 없지만, `Email` 클래스와 `Password` 클래스는 이와 분리시켜 테스트할 수 있다. `SignUp` 메소드를 겸손하게 만든 결과다.
 
 ```c#
 public async Task SignUp(string email, string password)
